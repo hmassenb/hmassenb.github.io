@@ -39,4 +39,4 @@ I want to understand what are the drivers of changes in inequality, such as tech
 
 ---
 
-© 2025 Your Name
+© 2025 Hannah Massenbauer
