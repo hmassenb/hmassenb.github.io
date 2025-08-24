@@ -1,7 +1,7 @@
-# Your Name
+# Hannah Massenbauer
 
 **Predoctoral Researcher in Economics**  
-_Labor Economics · Inequality · Applied Econometrics
+Labor Economics · Inequality · Applied Econometrics
 
 [Research](#research) · [Teaching](#teaching) · [Publications](#publications) · [Contact](#contact)
 
@@ -30,7 +30,6 @@ I want to understand what are the drivers of changes in inequality, such as tech
 
 - **2024–2025**: Tutorium for Statistics in R (WU)
 - **2025**: Tutor for GAIN Network (UZH)
-
 
 
 ## Contact
