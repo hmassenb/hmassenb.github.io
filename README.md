@@ -7,24 +7,31 @@ _Labor Economics · Inequality · Applied Econometrics
 
 ---
 
+## About me
+Hi! 
+
+I am Hannah, when I am not in the mountains, then I am an pre-doctoral researcher in economics at the University of Zurich. 
+
+
+
 ## Research
 
-My research interests lie at the intersection of labor economics and inequality.  
-I'm particularly interested in how technological change and institutions shape earnings and wealth inequality.
+In my research I am interested in inequalities on labor markets and the income & wealth inequalities between individuals. 
+I want to understand what are the drivers of changes in inequality, such as technologies, and how people perceive these inequalities. 
+
+
 
 **Working papers:**
 
-- _"Minimum Wage and Poverty"_ (with Parolin, Lehner, Schmidt) — [Link to paper or abstract]
+- _"The Effects of Minimum Wage Increases on Poverty and Food Hardship"_ (with Parolin, Lehner, Schmidt) — [Link to paper or abstract]
+- (Mis)perceptions of Inequality and their determinants"_ (with Schmitt, Löffler, Moya, Memmen, Franetovic)
 
 ## Teaching
 
-- **2024–2025**: Teaching Assistant for "Intro to Econometrics" (UZH)
-- **2023**: Tutor for "Public Economics" (Bachelor level)
+- **2024–2025**: Tutorium for Statistics in R (WU)
+- **2025**: Tutor for GAIN Network (UZH)
 
-## Publications
 
-- _"Minimum Wage and Poverty"_ 
-  A study of minimum wage increases and their effects on poverty and labor force participation.
 
 ## Contact
 
