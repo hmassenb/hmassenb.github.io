@@ -3,7 +3,7 @@
 **Predoctoral Researcher in Economics**  
 Labor Economics · Inequality · Applied Econometrics
 
-[Research](#research) · [Teaching](#teaching) · [Publications](#publications) · [Contact](#contact)
+[Research](#research) · [Teaching](#teaching) · [Contact](#contact)
 
 ---
 
@@ -34,7 +34,7 @@ I want to understand what are the drivers of changes in inequality, such as tech
 
 ## Contact
 
-📧 Email: [hannah.massenbauer@domain.com](mailto:hannah.massenbauer@domain.com)  
+📧 Email: [hannah.massenbauer@gmail.com](mailto:hannah.massenbauer@gmail.com)  
 🔗 [GitHub](https://github.com/hmassenb) · [LinkedIn](https://linkedin.com/in/hannah-massenbauer-8964a2214)
 
 ---
