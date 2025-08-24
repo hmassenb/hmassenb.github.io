@@ -1,7 +1,7 @@
 # Your Name
 
 **Predoctoral Researcher in Economics**  
-_Labor Economics · Inequality · Applied Micro_
+_Labor Economics · Inequality · Applied Econometrics
 
 [Research](#research) · [Teaching](#teaching) · [Publications](#publications) · [Contact](#contact)
 
@@ -9,8 +9,8 @@ _Labor Economics · Inequality · Applied Micro_
 
 ## Research
 
-My research interests lie at the intersection of labor economics and inequality, with a focus on evaluating the impacts of public policy using causal inference methods.  
-I'm particularly interested in how technological change and institutions shape earnings and opportunity.
+My research interests lie at the intersection of labor economics and inequality.  
+I'm particularly interested in how technological change and institutions shape earnings and wealth inequality.
 
 **Working papers:**
 
@@ -23,13 +23,13 @@ I'm particularly interested in how technological change and institutions shape e
 
 ## Publications
 
-- _"Minimum Wage and Poverty"_ (Under review)  
+- _"Minimum Wage and Poverty"_ 
   A study of minimum wage increases and their effects on poverty and labor force participation.
 
 ## Contact
 
-📧 Email: [your.email@domain.com](mailto:your.email@domain.com)  
-🔗 [GitHub](https://github.com/yourusername) · [LinkedIn](https://linkedin.com/in/yourusername)
+📧 Email: [hannah.massenbauer@domain.com](mailto:hannah.massenbauer@domain.com)  
+🔗 [GitHub](https://github.com/hmassenb) · [LinkedIn](https://linkedin.com/in/hannah-massenbauer-8964a2214)
 
 ---
 
