@@ -2,28 +2,105 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Hannah Massenbauer</title>
   <meta name="description" content="Predoctoral Researcher in Economics — Labor, Inequality, Applied Econometrics" />
   <style>
     :root { color-scheme: light dark; }
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.6; background-image: url('mountains.jpeg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: 75% center; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      background-image: url('mountains.jpeg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;             /* desktop: keep fixed */
+      background-position: 75% center;
+      background-color: #f7f7f7;                /* fallback color */
+    }
+
+    /* Turn off fixed background on touch devices / small screens */
+    @media (pointer: coarse), (max-width: 768px) {
+      body {
+        background-attachment: scroll;
+        background-position: center top;
+      }
+    }
+    /* iOS-specific safety net */
+    @supports (-webkit-touch-callout: none) {
+      body { background-attachment: scroll; }
+    }
 
     /* Top bar */
-    header { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #e5e7eb; padding: 10px 0; }
-    @media (prefers-color-scheme: dark) { header { background: #111; border-bottom-color: #222; } }
-    .bar { max-width: 980px; margin: 0 auto; padding: 0 16px; display: flex; justify-content: space-between; align-items: center; }
+    header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 10px 0;
+      z-index: 10;                               /* ensure it stays above content */
+    }
+    @media (prefers-color-scheme: dark) {
+      header { background: #111; border-bottom-color: #222; }
+    }
+
+    .bar {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 16px env(safe-area-inset-right) 0;  /* safe area on the right */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
     .brand { font-weight: 700; }
-    nav a { text-decoration: none; margin-left: 14px; color: inherit; }
+    nav a {
+      text-decoration: none;
+      margin-left: 14px;
+      color: inherit;
+      padding: 8px 4px;                        /* larger tap target */
+      display: inline-block;
+    }
 
     /* Page container */
-    .wrap { max-width: 980px; margin: 24px auto 64px; padding: 24px 20px 64px; background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .wrap {
+      max-width: 980px;
+      margin: 24px auto 64px;
+      padding: 24px 20px 64px;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    @media (max-width: 640px) {
+      .wrap {
+        margin: 12px auto 40px;
+        padding: 20px 14px 40px;
+      }
+    }
 
     /* Hero (content area): picture next to big name; subtitle below name */
-    .hero { display: grid; grid-template-columns: 160px 1fr; gap: 18px; align-items: center; margin-top: 8px; }
-    .headshot { width: 160px; height: 160px; object-fit: cover; border-radius: 10px; display: block; }
-    @media (max-width: 640px) { .hero { grid-template-columns: 1fr; } }
+    .hero {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 18px;
+      align-items: center;
+      margin-top: 8px;
+    }
+    .headshot {
+      width: 160px;
+      height: 160px;
+      max-width: 100%;        /* prevent overflow with large text sizes */
+      height: auto;           /* maintain aspect on small screens */
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+    }
+    @media (max-width: 640px) {
+      .hero { grid-template-columns: 1fr; }
+    }
+
     h1 { margin: 0 0 6px; font-size: 36px; }
     .subtitle { margin: 0; color: #555; }
 
@@ -58,20 +135,19 @@
     <!-- EXACT TEXT FROM YOUR ORIGINAL MESSAGE -->
     <section id="about">
       <h2>About me</h2>
-      <p>Hi! </p>
-      <p>I am Hannah, I am a pre-doctoral researcher in economics at the University of Zurich and I like mountains. </p>
+      <p>Hi!</p>
+      <p>I am Hannah, I am a pre-doctoral researcher in economics at the University of Zurich and I like mountains.</p>
     </section>
 
     <section id="research-teaser">
       <h2>Research</h2>
-      <p>In my research I am interested in inequalities on labor markets and income &amp; wealth inequalities. </p>
-      <p>I want to understand the drivers of changes in inequality, such as technological change, and how people perceive these inequalities and what the consequences are. </p>
+      <p>In my research I am interested in inequalities on labor markets and income &amp; wealth inequalities.</p>
+      <p>I want to understand the drivers of changes in inequality, such as technological change, and how people perceive these inequalities and what the consequences are.</p>
 
       <h3>Working papers:</h3>
       <ul>
-        <li><em>"The Effects of Minimum Wage Increases on Poverty and Food Hardship"</em> (with  Lehner,Parolin, Schmitt) 
-          <a href="https://www.iza.org/publications/dp/18142/the-effects-of-minimum-wage-increases-on-poverty-and-food-hardship"
-   target="_blank" rel="noopener">IZA working paper</a></li>
+        <li><em>"The Effects of Minimum Wage Increases on Poverty and Food Hardship"</em> (with Lehner, Parolin, Schmitt)
+          <a href="https://www.iza.org/publications/dp/18142/the-effects-of-minimum-wage-increases-on-poverty-and-food-hardship" target="_blank" rel="noopener">IZA working paper</a></li>
         <li><em>(Mis)perceptions of Inequality and their determinants"</em> (with Franetovic, Löffler, Memmen, Moya, Schmitt)</li>
       </ul>
     </section>
