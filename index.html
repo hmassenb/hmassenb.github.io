@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <!-- allow safe-area and pinch-zoom -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes" />
   <title>Hannah Massenbauer</title>
   <meta name="description" content="Predoctoral Researcher in Economics — Labor, Inequality, Applied Econometrics" />
   <style>
@@ -92,6 +93,7 @@
       border: 1px solid #e5e7eb;
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      position: relative;
     }
 
     @media (max-width: 640px) {
@@ -131,6 +133,27 @@
     h2 { margin: 0 0 10px; font-size: 20px; }
     ul { padding-left: 18px; }
     footer { margin-top: 36px; font-size: 14px; color: inherit; }
+
+    /* Mobile-only full-bleed background reveal at the bottom */
+    @media (max-width: 768px) {
+      .bg-panel {
+        height: 42vh;                                  /* how much photo to show */
+        background-image: url('mountains.jpeg');
+        background-size: cover;
+        background-position: 75% center;
+        background-repeat: no-repeat;
+        border-top: 1px solid #e5e7eb;
+        border-bottom: 1px solid #e5e7eb;
+        position: relative;
+      }
+      .bg-panel::before {                               /* subtle gradient for polish */
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(255,255,255,0.0), rgba(255,255,255,0.25));
+        pointer-events: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -183,6 +206,9 @@
       © <span id="year"></span> Hannah Massenbauer
     </footer>
   </main>
+
+  <!-- Mobile-only full-bleed background reveal -->
+  <div class="bg-panel" aria-hidden="true"></div>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
