@@ -3,23 +3,32 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Research — Hannah Massenbauer</title>
-  <meta name="description" content="Research by Hannah Massenbauer" />
+  <title>Hannah Massenbauer</title>
+  <meta name="description" content="Predoctoral Researcher in Economics — Labor, Inequality, Applied Econometrics" />
   <style>
     :root { color-scheme: light dark; }
     * { box-sizing: border-box; }
     body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.6; }
 
+    /* Top bar */
     header { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #e5e7eb; padding: 10px 0; }
     @media (prefers-color-scheme: dark) { header { background: #111; border-bottom-color: #222; } }
     .bar { max-width: 980px; margin: 0 auto; padding: 0 16px; display: flex; justify-content: space-between; align-items: center; }
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
-    .avatar { width: 32px; height: 32px; border-radius: 999px; object-fit: cover; display: block; }
+    .brand { font-weight: 700; }
     nav a { text-decoration: none; margin-left: 14px; color: inherit; }
 
+    /* Page container */
     .wrap { max-width: 980px; margin: 0 auto; padding: 20px 16px 64px; }
-    h1 { margin: 8px 0 6px; font-size: 28px; }
-    h2 { margin: 18px 0 10px; font-size: 20px; }
+
+    /* Hero with big name + portrait (this is the header section of the page) */
+    .hero { display: grid; grid-template-columns: 140px 1fr; gap: 18px; align-items: center; margin-top: 8px; }
+    .headshot { width: 140px; height: 140px; object-fit: cover; border-radius: 10px; display: block; }
+    @media (min-width: 720px) { .hero { grid-template-columns: 180px 1fr; } .headshot { width: 180px; height: 180px; } }
+    h1 { margin: 0 0 6px; font-size: 36px; }
+    .subtitle { margin: 0; color: #555; }
+
+    section { margin-top: 28px; }
+    h2 { margin: 0 0 10px; font-size: 20px; }
     ul { padding-left: 18px; }
     footer { margin-top: 36px; font-size: 14px; color: #666; }
   </style>
@@ -27,25 +36,53 @@
 <body>
   <header>
     <div class="bar">
-      <div class="brand"><img class="avatar" src="portrait.jpeg" alt="" aria-hidden="true"><span>Hannah Massenbauer</span></div>
+      <div class="brand">Hannah Massenbauer</div>
       <nav aria-label="Main">
-        <a href="index.html">About</a>
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
         <a href="CV.pdf" target="_blank" rel="noopener">CV</a>
-        <a href="#" aria-current="page">Research</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
   <main class="wrap">
-    <h1>Research</h1>
+    <!-- HERO (header area): picture next to big name, subtitle below name -->
+    <div class="hero">
+      <img class="headshot" src="profile.jpg" alt="Portrait of Hannah Massenbauer" />
+      <div>
+        <h1>Hannah Massenbauer</h1>
+        <p class="subtitle">Predoctoral Researcher in Economics</p>
+      </div>
+    </div>
 
-    <section>
-      <h2>Working papers</h2>
+    <section id="about">
+      <h2>About me</h2>
+      <p>Hi!</p>
+      <p>I am Hannah, when I am not in the mountains, then I am an pre-doctoral researcher in economics at the University of Zurich.</p>
+    </section>
+
+    <section id="research">
+      <h2>Research</h2>
+      <p>In my research I am interested in inequalities on labor markets and the income &amp; wealth inequalities.</p>
+      <p>I want to understand what are the drivers of changes in inequality, such as technologies, how people perceive these inequalities and what the consequences are.</p>
+
+      <h3>Working papers:</h3>
       <ul>
-        <li><em>The Effects of Minimum Wage Increases on Poverty and Food Hardship</em> (with Lehner, Parolin, Schmidt) — <a href="https://www.iza.org/publications/dp/18142/the-effects-of-minimum-wage-increases-on-poverty-and-food-hardship" target="_blank" rel="noopener">IZA Discussion Paper 18142</a></li>
-        <li><em>(Mis)perceptions of Inequality and Their Determinants</em> (with Franetovic, Löffler, Memmen, Moya, Schmitt)</li>
+        <li><em>"The Effects of Minimum Wage Increases on Poverty and Food Hardship"</em> (with Lehner, Parolin, Schmidt) — <a href="https://www.iza.org/publications/dp/18142/the-effects-of-minimum-wage-increases-on-poverty-and-food-hardship" target="_blank" rel="noopener">https://www.iza.org/publications/dp/18142/the-effects-of-minimum-wage-increases-on-poverty-and-food-hardship</a></li>
+        <li><em>(Mis)perceptions of Inequality and their determinants</em> (with Franetovic, Löffler, Memmen, Moya, Schmitt)</li>
       </ul>
+    </section>
+
+    <section id="cv">
+      <h2>CV</h2>
+      <p><a href="CV.pdf" target="_blank" rel="noopener">Download CV (PDF)</a></p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>📧 Email: <a href="mailto:hannah.massenbauer@gmail.com">hannah.massenbauer@gmail.com</a></p>
+      <p><a href="https://github.com/hmassenb" target="_blank" rel="noopener">GitHub</a> · <a href="https://linkedin.com/in/hannah-massenbauer-8964a2214" target="_blank" rel="noopener">LinkedIn</a></p>
     </section>
 
     <footer>
