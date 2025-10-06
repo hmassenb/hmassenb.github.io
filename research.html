@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <!-- allow pinch zoom; browsers still won’t zoom below 1x, but this keeps UX nice -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes" />
   <title>Research — Hannah Massenbauer</title>
   <meta name="description" content="Research of Hannah Massenbauer" />
   <style>
     :root { color-scheme: light dark; }
     * { box-sizing: border-box; }
 
-    /* Page background (kept for desktop) */
+    /* Page background for desktop */
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -24,7 +25,7 @@
       -webkit-text-size-adjust: 100%;
     }
 
-    /* Make text stay dark on white even in dark mode */
+    /* Force light surfaces & dark text even in dark mode */
     @media (prefers-color-scheme: dark) {
       html, body {
         color: #111 !important;
@@ -40,33 +41,6 @@
         box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
       }
       a { color: #0b57d0 !important; }
-    }
-
-    /* Mobile hero image (full-bleed, visible only on small screens) */
-    .hero-bleed {
-      display: none;
-    }
-    @media (max-width: 768px) {
-      /* On phones, use a dedicated hero instead of a page-wide background */
-      body {
-        background-image: none;                   /* prevent heavy fixed bg on mobile */
-        background-color: #f7f7f7;
-      }
-      .hero-bleed {
-        display: block;
-        position: relative;
-        height: 40vh;                             /* nice first impression */
-        background-image: url('mountains.jpeg');
-        background-size: cover;
-        background-position: 75% center;
-        background-repeat: no-repeat;
-      }
-      .hero-bleed::after {                        /* subtle dark overlay for contrast */
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.35));
-      }
     }
 
     /* Header */
@@ -106,13 +80,8 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       position: relative;
     }
-    @media (max-width: 768px) {
-      .wrap {
-        margin: -36px auto 40px;                  /* overlap the hero slightly */
-        padding: 20px 14px 40px;
-      }
-    }
 
+    /* Typography */
     h1 { margin: 8px 0 6px; font-size: 34px; }
     h2 { margin: 24px 0 10px; font-size: 22px; }
     h3 { margin: 14px 0 6px; font-size: 18px; }
@@ -124,9 +93,38 @@
     .links a { margin-right: 14px; }
     footer { margin-top: 36px; font-size: 14px; color: #666; text-align: left; }
 
-    /* Keep scrolling smooth on mobile (no fixed bg) */
-    @media (pointer: coarse), (max-width: 768px) {
-      /* no change needed here since we swapped to hero-bleed */
+    /* MOBILE-SPECIFIC ENHANCEMENTS */
+    @media (max-width: 768px) {
+      /* Avoid jank: no fixed background on mobile */
+      body {
+        background-attachment: scroll;
+        background-position: center top;
+      }
+
+      /* Slightly overlap card with the header area */
+      .wrap {
+        margin: 12px auto 32px;
+        padding: 20px 14px 40px;
+      }
+
+      /* Full-bleed background panel at the end (reveals the photo elegantly) */
+      .bg-panel {
+        height: 42vh;                                  /* how much photo to show */
+        background-image: url('mountains.jpeg');
+        background-size: cover;
+        background-position: 75% center;
+        background-repeat: no-repeat;
+        border-top: 1px solid #e5e7eb;
+        border-bottom: 1px solid #e5e7eb;
+        position: relative;
+      }
+      .bg-panel::before {                               /* subtle gradient for polish */
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(255,255,255,0.0), rgba(255,255,255,0.25));
+        pointer-events: none;
+      }
     }
   </style>
 </head>
@@ -141,9 +139,6 @@
       </nav>
     </div>
   </header>
-
-  <!-- Full-bleed image shown on phones only -->
-  <div class="hero-bleed" aria-hidden="true"></div>
 
   <main class="wrap">
     <h1>Research</h1>
@@ -179,15 +174,14 @@
         <h3><em>(Mis)perceptions of Inequality and Their Determinants</em></h3>
         <p class="meta">(with Franetovic, Löffler, Memmen, Moya, Schmitt)</p>
         <p class="abstract">
-          <strong>Abstract.</strong> We study how people perceive and evaluate wealth inequality in Germany—one of Western Europe’s most unequal wealth distributions. 
-          Using an online survey with a factorial vignette experiment, respondents (Prolific, quota-sampled) (i) estimate euro amounts at 
-          key percentiles of the wealth distribution and (ii) place hypothetical individuals into percentiles and judge whether their wealth
-          is unfairly low, fair, or unfairly high. Vignettes vary effort (hours worked), inheritance, and gender while holding wealth amounts 
-          fixed. We test five hypotheses: systematic underestimation of inequality (especially at the top); meritocratic attribution raises 
-          perceived deservingness; gender bias favors men; non-meritocratic wealth (inheritance) is penalized in fairness judgments; and 
-          self-location biases perceptions and evaluations. The study links perceptions, fairness norms, and causal attributions,
-          informing debates on distributive justice and support for
-        </p>
+          <strong>Abstract.</strong> We study how people perceive and evaluate wealth inequality in Germany. We design an online survey with 
+          a factorial vignette experiment and ask respondents i) estimate euro amounts at key percentiles of the wealth distribution and ii)
+          place hypothetical individuals with wealth levels and let them estimate the position and judge the fairness of their wealth. 
+          Vignettes vary meritocratic and sociodemographic factors while holding wealth amounts fixed. We test five hypotheses: 
+          systematic underestimation of inequality (especially at the top); meritocratic attribution raises perceived deservingness; 
+          gender bias favors men; non-meritocratic wealth (inheritance) is penalized in fairness judgments; and self-location biases perceptions
+          and evaluations. The study links perceptions, fairness norms, and causal attributions, informing debates on distributive justice 
+          and support for redistribution.    </p>
       </article>
     </section>
 
@@ -198,7 +192,18 @@
         <h3><em>[Role of education in the era of automation: A task-based approach]</em></h3>
         <p class="meta">Hannah Massenbauer</p>
         <p class="abstract">
-          <strong>Abstract.</strong>
+          <strong>Recent technological advancements have evoked discussion about subsitution and complementation of tasks. 
+            According to the skill-biased technology change hypothesis higher education plays a pivotal role. A second
+            approach the routine-biased technology change focus on the task composition of a job - in particular the 
+            routine task intensity (RTI). This paper is an examination of the link between higher education and routine 
+            task intensity sheds light on how these two factors are intertwined.  Using data from the European Social 
+            Survey covering 18 European countries from 2012 to 2018 I find that higher education significantly reduces 
+            RTI by 20\%. This implies that higher educated people face less risk of workplace automation and could profit 
+            from a complementary usage. However, the extent to which higher education reduces routine intense tasks varies
+            between European countries and demographic subgroups such as gender and income deciles. A dynamic analysis
+            reveals a divergence of RTI jobs across Europe. This paper sheds light on compositional differences across EU
+            countries and their implications for inequality and future policy.}
+</strong>
         </p>
         <div class="links">
           <!-- <a href="master_thesis.pdf" target="_blank" rel="noopener">Download thesis (PDF)</a> -->
@@ -210,6 +215,9 @@
       © <span id="year"></span> Hannah Massenbauer
     </footer>
   </main>
+
+  <!-- Mobile-only full-bleed background reveal -->
+  <div class="bg-panel" aria-hidden="true"></div>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
