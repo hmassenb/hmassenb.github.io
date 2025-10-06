@@ -1,60 +1,164 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Your Name | Predoc Economics</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hannah Massenbauer — Predoctoral Researcher in Economics</title>
+  <meta name="description" content="Hannah Massenbauer — Labor Economics, Inequality, Applied Econometrics" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; line-height: 1.6; color: #333; }
-    header { text-align: center; padding: 2rem 1rem; background: #004080; color: white; }
-    nav a { margin: 0 0.5rem; color: #80c0ff; text-decoration: none; }
-    nav a:hover { text-decoration: underline; }
-    section { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
-    footer { text-align: center; font-size: 0.9rem; color: #666; padding: 1rem 0; border-top: 1px solid #ddd; }
+    :root {
+      --bg: #0b0d10;
+      --panel: #111418;
+      --text: #e9eef4;
+      --muted: #aab5c3;
+      --link: #7aa2ff;
+      --accent: #b9f227;
+      --border: #242a33;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f7f8fa;
+        --panel: #ffffff;
+        --text: #0e1116;
+        --muted: #4a5565;
+        --link: #1b4bff;
+        --accent: #2f8f2f;
+        --border: #e6e9ee;
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 10% -10%, rgba(122,162,255,0.15), transparent 60%),
+                  radial-gradient(1000px 600px at 100% 0%, rgba(185,242,39,0.10), transparent 60%),
+                  var(--bg);
+      line-height: 1.6;
+    }
+    .container { max-width: 900px; margin: 0 auto; padding: 28px 20px 80px; }
+    header { position: sticky; top: 0; backdrop-filter: blur(8px); background: color-mix(in oklab, var(--bg) 80%, transparent); border-bottom: 1px solid var(--border); }
+    .nav { display: flex; gap: 20px; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .brand { display: flex; align-items: center; gap: 14px; font-weight: 700; letter-spacing: 0.2px; }
+    .brand .dot { width: 10px; height: 10px; border-radius: 999px; background: var(--accent); box-shadow: 0 0 18px var(--accent); }
+    .links a { color: var(--text); text-decoration: none; font-weight: 500; opacity: 0.9; padding: 8px 10px; border-radius: 10px; }
+    .links a:hover { background: var(--panel); opacity: 1; }
+
+    .hero { display: grid; grid-template-columns: 150px 1fr; gap: 22px; align-items: center; padding-top: 28px; }
+    .headshot { width: 150px; height: 150px; border-radius: 20px; object-fit: cover; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.2); background: var(--panel); }
+    .title h1 { margin: 0 0 8px; font-size: 28px; letter-spacing: 0.1px; }
+    .subtitle { margin: 0; color: var(--muted); font-weight: 500; }
+    .pill { display: inline-block; border: 1px solid var(--border); border-radius: 999px; padding: 6px 10px; margin-right: 8px; font-size: 14px; color: var(--muted); }
+
+    section { margin-top: 36px; padding: 22px; background: color-mix(in oklab, var(--panel) 90%, transparent); border: 1px solid var(--border); border-radius: 16px; }
+    section h2 { margin: 0 0 14px; font-size: 22px; }
+
+    .about p { margin: 0 0 8px; }
+
+    .papers { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+    .papers li { padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: linear-gradient(180deg, color-mix(in oklab, var(--panel) 70%, transparent), color-mix(in oklab, var(--panel) 95%, transparent)); }
+    .papers a { color: var(--link); text-decoration: none; }
+    .papers a:hover { text-decoration: underline; }
+    .paper-title { font-weight: 600; }
+
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 720px) { .hero { grid-template-columns: 1fr; } .grid { grid-template-columns: 1fr; } }
+
+    .button-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--panel); color: var(--text); text-decoration: none; font-weight: 600; }
+    .btn:hover { filter: brightness(1.05); }
+    .btn.primary { background: linear-gradient(180deg, color-mix(in oklab, var(--link) 25%, var(--panel)), var(--panel)); border: 1px solid color-mix(in oklab, var(--link) 60%, var(--border)); }
+
+    footer { margin-top: 36px; padding: 22px; color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); }
+    footer a { color: var(--muted); }
   </style>
 </head>
 <body>
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="dot"></span><span>Hannah Massenbauer</span></div>
+      <nav class="links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#cv">CV</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-<header>
-  <h1>Your Name</h1>
-  <p>Predoctoral Researcher | Labor & Inequality | Economics</p>
-  <nav>
-    <a href="#research">Research</a>
-    · <a href="#teaching">Teaching</a>
-    · <a href="#publications">Publications</a>
-    · <a href="#contact">Contact</a>
-  </nav>
-</header>
+  <main class="container">
+    <section class="hero" id="top">
+      <img class="headshot" src="profile.jpg" alt="Portrait of Hannah Massenbauer" />
+      <div class="title">
+        <h1>Predoctoral Researcher in Economics</h1>
+        <p class="subtitle">Labor Economics · Inequality · Applied Econometrics</p>
+        <div class="button-row" style="margin-top:14px">
+          <a class="btn primary" href="#research">View Research</a>
+          <a class="btn" href="CV.pdf" target="_blank" rel="noopener">Download CV</a>
+          <a class="btn" href="#contact">Contact</a>
+        </div>
+      </div>
+    </section>
 
-<section id="research">
-  <h2>Research</h2>
-  <p>Brief summary of your research interests and working papers.</p>
-</section>
+    <section id="about" class="about">
+      <h2>About me</h2>
+      <p>Hi! I am Hannah. When I am not in the mountains, I am a pre-doctoral researcher in economics at the University of Zurich.</p>
+    </section>
 
-<section id="teaching">
-  <h2>Teaching</h2>
-  <p>Brief listing of teaching experience or tutoring.</p>
-</section>
+    <section id="research">
+      <h2>Research</h2>
+      <div class="grid">
+        <div>
+          <p>My research focuses on inequalities in labor markets and on income and wealth inequality. I study the drivers of changes in inequality — including technology — how people perceive these inequalities, and their consequences.</p>
+        </div>
+        <div>
+          <div class="pill" aria-hidden="true">Labor</div>
+          <div class="pill" aria-hidden="true">Inequality</div>
+          <div class="pill" aria-hidden="true">Applied Econometrics</div>
+        </div>
+      </div>
 
-<section id="publications">
-  <h2>Publications</h2>
-  <ul>
-    <li>Working Paper: "Minimum Wage and Poverty" (w/ Parolin, Lehner, Schmidt)</li>
-  </ul>
-</section>
+      <h3 style="margin-top:18px">Working Papers</h3>
+      <ul class="papers">
+        <li>
+          <div class="paper-title">The Effects of Minimum Wage Increases on Poverty and Food Hardship</div>
+          <div class="paper-authors">with Parolin, Lehner, Schmidt</div>
+          <a href="https://www.iza.org/publications/dp/18142/the-effects-of-minimum-wage-increases-on-poverty-and-food-hardship" target="_blank" rel="noopener">IZA Discussion Paper 18142</a>
+        </li>
+        <li>
+          <div class="paper-title">(Mis)perceptions of Inequality and Their Determinants</div>
+          <div class="paper-authors">with Schmitt, Löffler, Moya, Memmen, Franetovic</div>
+        </li>
+      </ul>
+    </section>
 
-<section id="contact">
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:your.email@domain.com">your.email@domain.com</a></p>
-  <p>
-    <a href="https://github.com/yourusername" target="_blank">GitHub</a> ·
-    <a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
-  </p>
-</section>
+    <section id="cv">
+      <h2>CV</h2>
+      <p>For the most up-to-date details, download my CV as a PDF.</p>
+      <div class="button-row">
+        <a class="btn primary" href="CV.pdf" target="_blank" rel="noopener">Download CV</a>
+        <a class="btn" href="https://github.com/hmassenb" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://linkedin.com/in/hannah-massenbauer-8964a2214" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </section>
 
-<footer>
-  © Your Name, 2025
-</footer>
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>📧 <a href="mailto:hannah.massenbauer@gmail.com">hannah.massenbauer@gmail.com</a></p>
+    </section>
+  </main>
 
+  <footer class="container">
+    <span>© <span id="year"></span> Hannah Massenbauer</span>
+    <a href="#top">Back to top</a>
+  </footer>
+
+  <script>
+    // Update year automatically
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
