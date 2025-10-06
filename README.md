@@ -13,17 +13,16 @@ Hi!
 I am Hannah, when I am not in the mountains, then I am an pre-doctoral researcher in economics at the University of Zurich. 
 
 
-
 ## Research
 
-In my research I am interested in inequalities on labor markets and the income & wealth inequalities between individuals. 
-I want to understand what are the drivers of changes in inequality, such as technologies, and how people perceive these inequalities. 
+In my research I am interested in inequalities on labor markets and the income & wealth inequalities. 
+I want to understand what are the drivers of changes in inequality, such as technologies, how people perceive these inequalities and what the consequences are. 
 
 
 
 **Working papers:**
 
-- _"The Effects of Minimum Wage Increases on Poverty and Food Hardship"_ (with Parolin, Lehner, Schmidt) — [Link to paper or abstract]
+- _"The Effects of Minimum Wage Increases on Poverty and Food Hardship"_ (with Parolin, Lehner, Schmidt) — https://www.iza.org/publications/dp/18142/the-effects-of-minimum-wage-increases-on-poverty-and-food-hardship
 - (Mis)perceptions of Inequality and their determinants"_ (with Schmitt, Löffler, Moya, Memmen, Franetovic)
 
 ## Teaching
