@@ -15,8 +15,11 @@
     header { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #e5e7eb; padding: 10px 0; }
     @media (prefers-color-scheme: dark) { header { background: #111; border-bottom-color: #222; } }
     .bar { max-width: 980px; margin: 0 auto; padding: 0 16px; display: flex; justify-content: space-between; align-items: center; }
-    .brand { font-weight: 700; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
     nav a { text-decoration: none; margin-left: 14px; color: inherit; }
+
+    /* Small circular avatar next to name */
+    .avatar { width: 32px; height: 32px; border-radius: 999px; object-fit: cover; display: block; }
 
     /* Layout: content left, side image right on wide screens */
     .wrap { max-width: 980px; margin: 0 auto; padding: 20px 16px 64px; display: grid; grid-template-columns: 1fr; gap: 24px; }
@@ -40,7 +43,7 @@
 <body>
   <header>
     <div class="bar">
-      <div class="brand">Hannah Massenbauer</div>
+      <div class="brand"><img class="avatar" src="portrait.jpg" alt="" aria-hidden="true"><span>Hannah Massenbauer</span></div>
       <nav aria-label="Main">
         <a href="#cv">CV</a>
         <a href="#research">Research</a>
@@ -53,7 +56,8 @@
     <!-- Left: content -->
     <div>
       <h1>Predoctoral Researcher in Economics</h1>
-      <p>I study labor, income, and wealth inequality, focusing on how power shifts—especially through technology—shape outcomes.</p>
+      
+      <p>I am interested in labor economics and economic inequalities such as income and wealth inequality.  </p>
 
       <section id="about">
         <h2>About</h2>
@@ -64,7 +68,7 @@
         <h2>Research</h2>
         <h3>Working papers</h3>
         <ul>
-          <li><em>The Effects of Minimum Wage Increases on Poverty and Food Hardship</em> (with Parolin, Lehner, Schmidt) — <a href="https://www.iza.org/publications/dp/18142/the-effects-of-minimum-wage-increases-on-poverty-and-food-hardship" target="_blank" rel="noopener">IZA Discussion Paper 18142</a></li>
+          <li><em>The Effects of Minimum Wage Increases on Poverty and Food Hardship</em> (with Lehner, Parolin, Schmidt) — <a href="https://www.iza.org/publications/dp/18142/the-effects-of-minimum-wage-increases-on-poverty-and-food-hardship" target="_blank" rel="noopener">IZA Discussion Paper 18142</a></li>
           <li><em>(Mis)perceptions of Inequality and Their Determinants</em> (with Schmitt, Löffler, Moya, Memmen, Franetovic)</li>
         </ul>
       </section>
@@ -85,10 +89,7 @@
       </footer>
     </div>
 
-    <!-- Right: simple side image (upload a file named side.jpg) -->
-    <aside class="side" aria-hidden="true">
-      <img src="side.jpg" alt="" />
-    </aside>
+  
   </main>
 
   <script>
