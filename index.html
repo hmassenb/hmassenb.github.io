@@ -13,12 +13,23 @@
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height: 1.6;
+      color: #111;                           /* Ensure readable text in light mode */
       background-image: url('mountains.jpeg');
       background-size: cover;
       background-repeat: no-repeat;
-      background-attachment: fixed;             /* desktop: keep fixed */
+      background-attachment: fixed;          /* desktop: keep fixed */
       background-position: 75% center;
-      background-color: #f7f7f7;                /* fallback color */
+      background-color: #f7f7f7;             /* fallback color */
+      -webkit-text-size-adjust: 100%;
+    }
+
+    /* Dark mode: set explicit colors so text never becomes "white on white" */
+    @media (prefers-color-scheme: dark) {
+      body { color: #e5e7eb; background-color: #0a0a0a; }
+      header { background: #111; border-bottom-color: #222; }
+      .wrap { background: #111; border-color: #222; box-shadow: none; }
+      .subtitle { color: #bdbdbd; }
+      a { color: #9ecbff; }
     }
 
     /* Turn off fixed background on touch devices / small screens */
@@ -40,26 +51,25 @@
       background: #fff;
       border-bottom: 1px solid #e5e7eb;
       padding: 10px 0;
-      z-index: 10;                               /* ensure it stays above content */
-    }
-    @media (prefers-color-scheme: dark) {
-      header { background: #111; border-bottom-color: #222; }
+      z-index: 10;                           /* keep above content */
     }
 
     .bar {
       max-width: 980px;
       margin: 0 auto;
-      padding: 0 16px env(safe-area-inset-right) 0;  /* safe area on the right */
+      padding: 0 16px env(safe-area-inset-right) 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
+
     .brand { font-weight: 700; }
+
     nav a {
       text-decoration: none;
       margin-left: 14px;
       color: inherit;
-      padding: 8px 4px;                        /* larger tap target */
+      padding: 8px 4px;                      /* easier taps */
       display: inline-block;
     }
 
@@ -68,11 +78,12 @@
       max-width: 980px;
       margin: 24px auto 64px;
       padding: 24px 20px 64px;
-      background: #fff;
+      background: #fff;                       /* explicit white in light mode */
       border: 1px solid #e5e7eb;
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.08);
     }
+
     @media (max-width: 640px) {
       .wrap {
         margin: 12px auto 40px;
@@ -80,7 +91,7 @@
       }
     }
 
-    /* Hero (content area): picture next to big name; subtitle below name */
+    /* Hero */
     .hero {
       display: grid;
       grid-template-columns: 160px 1fr;
@@ -88,15 +99,17 @@
       align-items: center;
       margin-top: 8px;
     }
+
     .headshot {
       width: 160px;
       height: 160px;
-      max-width: 100%;        /* prevent overflow with large text sizes */
-      height: auto;           /* maintain aspect on small screens */
+      max-width: 100%;
+      height: auto;
       object-fit: cover;
       border-radius: 10px;
       display: block;
     }
+
     @media (max-width: 640px) {
       .hero { grid-template-columns: 1fr; }
     }
@@ -107,7 +120,7 @@
     section { margin-top: 28px; }
     h2 { margin: 0 0 10px; font-size: 20px; }
     ul { padding-left: 18px; }
-    footer { margin-top: 36px; font-size: 14px; color: #666; }
+    footer { margin-top: 36px; font-size: 14px; color: inherit; }
   </style>
 </head>
 <body>
@@ -123,7 +136,6 @@
   </header>
 
   <main class="wrap">
-    <!-- HERO (content area) -->
     <div class="hero">
       <img class="headshot" src="portrait.jpeg" alt="Portrait of Hannah Massenbauer" />
       <div>
@@ -132,7 +144,6 @@
       </div>
     </div>
 
-    <!-- EXACT TEXT FROM YOUR ORIGINAL MESSAGE -->
     <section id="about">
       <h2>About me</h2>
       <p>Hi!</p>
@@ -142,7 +153,7 @@
     <section id="research-teaser">
       <h2>Research</h2>
       <p>In my research I am interested in inequalities on labor markets and income &amp; wealth inequalities.</p>
-      <p>I want to understand the drivers of changes in inequality, such as technological change, and how people perceive these inequalities and what the consequences are.</p>
+      <p>I want to understand the drivers of inequality, such as technological change, and how people perceive these inequalities and what the consequences are.</p>
 
       <h3>Working papers:</h3>
       <ul>
