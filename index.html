@@ -6,72 +6,90 @@
   <title>Hannah Massenbauer</title>
   <meta name="description" content="Predoctoral Researcher in Economics — Labor, Inequality, Applied Econometrics" />
   <style>
-    /* Minimal, readable starter styles */
+    /* ===== Minimal styles with a simple top nav and side image ===== */
     :root { color-scheme: light dark; }
+    * { box-sizing: border-box; }
     body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.6; }
-    .container { max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; }
-    header h1 { margin: 0 0 6px; font-size: 28px; }
-    header p { margin: 0 0 8px; color: #555; }
-    nav { margin: 8px 0 16px; }
-    nav a { text-decoration: none; margin-right: 10px; }
-    nav a + a::before { content: "· "; margin: 0 8px; color: #999; }
+
+    /* Top bar */
+    header { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #e5e7eb; padding: 10px 0; }
+    @media (prefers-color-scheme: dark) { header { background: #111; border-bottom-color: #222; } }
+    .bar { max-width: 980px; margin: 0 auto; padding: 0 16px; display: flex; justify-content: space-between; align-items: center; }
+    .brand { font-weight: 700; }
+    nav a { text-decoration: none; margin-left: 14px; color: inherit; }
+
+    /* Layout: content left, side image right on wide screens */
+    .wrap { max-width: 980px; margin: 0 auto; padding: 20px 16px 64px; display: grid; grid-template-columns: 1fr; gap: 24px; }
+    @media (min-width: 920px) {
+      .wrap { grid-template-columns: 2fr 1fr; }
+      .side { position: sticky; top: 64px; height: calc(100dvh - 96px); }
+    }
+
+    .side { border-radius: 10px; overflow: hidden; }
+    .side > img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(1.05); }
 
     section { margin-top: 28px; }
+    h1 { margin: 12px 0 4px; font-size: 28px; }
     h2 { margin: 0 0 10px; font-size: 20px; }
+
+    /* Small niceties */
     ul { padding-left: 18px; }
-
-    /* Simple headshot + text layout */
-    .about-grid { display: grid; grid-template-columns: 140px 1fr; gap: 16px; align-items: start; }
-    .headshot { width: 140px; height: 140px; object-fit: cover; border-radius: 8px; background: #eee; }
-    @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } }
-
     footer { margin-top: 36px; font-size: 14px; color: #666; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Hannah Massenbauer</h1>
-      <p>Predoctoral Researcher in Economics</p>
-    </header>
+  <header>
+    <div class="bar">
+      <div class="brand">Hannah Massenbauer</div>
+      <nav aria-label="Main">
+        <a href="#cv">CV</a>
+        <a href="#research">Research</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <section id="about">
-      <div class="about-grid">
-        <!-- Replace profile.jpg with your actual file name. Keep it in the same folder as this file. -->
-        <img class="headshot" src="portrait.jpeg" alt="Portrait of Hannah Massenbauer" />
-        <div>
-          <h2>About</h2>
-          <p>Hi! I am Hannah. When I am not in the mountains, I am a pre-doctoral researcher in economics at the University of Zurich.</p>
-        </div>
-      </div>
-    </section>
+  <main class="wrap">
+    <!-- Left: content -->
+    <div>
+      <h1>Predoctoral Researcher in Economics</h1>
+      <p>I study labor, income, and wealth inequality, focusing on how power shifts—especially through technology—shape outcomes.</p>
 
-    <section id="research">
-      <h2>Research Interest</h2>
-      <p>I study inequalities in labor markets and income & wealth inequality. I am interested in changes in power structures, such as technology and its consequences.</p>
+      <section id="about">
+        <h2>About</h2>
+        <p>Hi! I am Hannah. When I am not in the mountains, I am a pre-doctoral researcher in economics at the University of Zurich.</p>
+      </section>
 
-      <h3>Working papers</h3>
-      <ul>
-        <li><em>The Effects of Minimum Wage Increases on Poverty and Food Hardship</em> (with Parolin, Lehner, Schmidt) <br> <a href="https://www.iza.org/publications/dp/18142/the-effects-of-minimum-wage-increases-on-poverty-and-food-hardship" target="_blank" rel="noopener">IZA Discussion Paper 18142</a></li>
-        <li><em>(Mis)perceptions of Inequality and Their Determinants</em> (with Schmitt, Löffler, Moya, Memmen, Franetovic)</li>
-      </ul>
-    </section>
+      <section id="research">
+        <h2>Research</h2>
+        <h3>Working papers</h3>
+        <ul>
+          <li><em>The Effects of Minimum Wage Increases on Poverty and Food Hardship</em> (with Parolin, Lehner, Schmidt) — <a href="https://www.iza.org/publications/dp/18142/the-effects-of-minimum-wage-increases-on-poverty-and-food-hardship" target="_blank" rel="noopener">IZA Discussion Paper 18142</a></li>
+          <li><em>(Mis)perceptions of Inequality and Their Determinants</em> (with Schmitt, Löffler, Moya, Memmen, Franetovic)</li>
+        </ul>
+      </section>
 
-    <section id="cv">
-      <h2>CV</h2>
-      <p><a href="Massenbauer_CV.pdf" target="_blank" rel="noopener">Download CV (PDF)</a></p>
-    </section>
+      <section id="cv">
+        <h2>CV</h2>
+        <p><a href="CV.pdf" target="_blank" rel="noopener">Download CV (PDF)</a></p>
+      </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:hannah.massenbauer@gmail.com">hannah.massenbauer@gmail.com</a></p>
-      <p><a href="https://github.com/hmassenb" target="_blank" rel="noopener">GitHub</a> · <a href="https://linkedin.com/in/hannah-massenbauer-8964a2214" target="_blank" rel="noopener">LinkedIn</a></p>
-    </section>
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:hannah.massenbauer@gmail.com">hannah.massenbauer@gmail.com</a></p>
+        <p><a href="https://github.com/hmassenb" target="_blank" rel="noopener">GitHub</a> · <a href="https://linkedin.com/in/hannah-massenbauer-8964a2214" target="_blank" rel="noopener">LinkedIn</a></p>
+      </section>
 
-    <footer>
-      © <span id="year"></span> Hannah Massenbauer
-    </footer>
-  </div>
+      <footer>
+        © <span id="year"></span> Hannah Massenbauer
+      </footer>
+    </div>
+
+    <!-- Right: simple side image (upload a file named side.jpg) -->
+    <aside class="side" aria-hidden="true">
+      <img src="side.jpg" alt="" />
+    </aside>
+  </main>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
