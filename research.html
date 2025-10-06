@@ -8,13 +8,46 @@
   <style>
     :root { color-scheme: light dark; }
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.6; }
-    header { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #e5e7eb; padding: 10px 0; }
-    @media (prefers-color-scheme: dark) { header { background: #111; border-bottom-color: #222; } }
-    .bar { max-width: 980px; margin: 0 auto; padding: 0 16px; display: flex; justify-content: space-between; align-items: center; }
+
+    /* Full-page background */
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      background-image: url('mountains.jpeg');   /* <-- add this file */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: 75% center;          /* move left/right by changing 75% */
+    }
+
+    /* Top bar stays solid white above background */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: #fff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 10px 0;
+    }
+    @media (prefers-color-scheme: dark) {
+      header { background: #111; border-bottom-color: #222; }
+    }
+
+    .bar { max-width: 980px; margin: 0 auto; padding: 0 16px;
+           display: flex; justify-content: space-between; align-items: center; }
     .brand { font-weight: 700; }
     nav a { text-decoration: none; margin-left: 14px; color: inherit; }
-    .wrap { max-width: 980px; margin: 0 auto; padding: 20px 16px 64px; }
+
+    /* White card for content */
+    .wrap {
+      max-width: 980px;
+      margin: 24px auto 64px;
+      padding: 20px 16px 64px;
+      background: #fff;                         /* the white surface */
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
     h1 { margin: 8px 0 6px; font-size: 34px; }
     h2 { margin: 24px 0 10px; font-size: 22px; }
     h3 { margin: 14px 0 6px; font-size: 18px; }
@@ -34,8 +67,7 @@
       <nav aria-label="Main">
         <a href="index.html">About</a>
         <a href="#" aria-current="page">Research</a>
-        <a href="CV.pdf" target="_blank" rel="noopener">CV</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="Massenbauer_CV.pdf" target="_blank" rel="noopener">CV</a>  
       </nav>
     </div>
   </header>
@@ -52,22 +84,22 @@
         <p class="meta">(with Lukas Lehner, Zachary Parolin, Rafael Pintro Schmitt)</p>
         <p class="links">
           <a href="https://www.iza.org/publications/dp/18142/the-effects-of-minimum-wage-increases-on-poverty-and-food-hardship" target="_blank" rel="noopener">
-            IZA Discussion Paper 18142         </a>
+            IZA Discussion Paper 18142
+          </a>
         </p>
         <p class="abstract">
           <strong>Abstract.</strong> We study how minimum wage (MW) increases affect poverty and food hardship in the
-                                    United States from 1981–2019. Applying stacked difference-in-difference models and the
-                                    Supplemental Poverty Measure (SPM), we find that a $1 MW increase reduces poverty by
-                                    0.3 to 0.7 percentage points among all working-age adults, and by 1.2 to 1.7 percentage
-                                    points among individuals most likely to work in MW jobs. We also find that a $1 MW
-                                    increase reduces food insufficiency by 1.5 percentage points among likely-MW workers.
-                                    Effects on poverty are partially offset by higher living costs in MW-increasing states. Our
-                                    findings are robust across methodological choices that have divided the recent literature.
-                                    Overall, MW increases meaningfully reduce poverty and food hardship for the workers
-                                    most directly affected and deliver modest improvements for the broader working-age
-                                    population.
+          United States from 1981–2019. Applying stacked difference-in-difference models and the
+          Supplemental Poverty Measure (SPM), we find that a $1 MW increase reduces poverty by
+          0.3 to 0.7 percentage points among all working-age adults, and by 1.2 to 1.7 percentage
+          points among individuals most likely to work in MW jobs. We also find that a $1 MW
+          increase reduces food insufficiency by 1.5 percentage points among likely-MW workers.
+          Effects on poverty are partially offset by higher living costs in MW-increasing states. Our
+          findings are robust across methodological choices that have divided the recent literature.
+          Overall, MW increases meaningfully reduce poverty and food hardship for the workers
+          most directly affected and deliver modest improvements for the broader working-age
+          population.
         </p>
-   
       </article>
 
       <article class="entry">
@@ -75,18 +107,20 @@
         <p class="meta">(with Franetovic, Löffler, Memmen, Moya, Schmitt)</p>
         <p class="abstract">
           <strong>Abstract.</strong> We study how people perceive and evaluate wealth inequality in Germany—one of Western Europe’s most unequal wealth distributions. 
-                                      Using an online survey with a factorial vignette experiment, respondents (Prolific, quota-sampled) (i) estimate euro amounts at 
-                                      key percentiles of the wealth distribution and (ii) place hypothetical individuals into percentiles and judge whether their wealth
-                                      is unfairly low, fair, or unfairly high. Vignettes vary effort (hours worked), inheritance, and gender while holding wealth amounts 
-                                        fixed. We test five hypotheses: systematic underestimation of inequality (especially at the top); meritocratic attribution raises 
-                                        perceived deservingness; gender bias favors men; non-meritocratic wealth (inheritance) is penalized in fairness judgments; and 
-                                          self-location biases perceptions and evaluations. The study links perceptions, fairness norms, and causal attributions,
-                                        informing debates on distributive justice and support for
+          Using an online survey with a factorial vignette experiment, respondents (Prolific, quota-sampled) (i) estimate euro amounts at 
+          key percentiles of the wealth distribution and (ii) place hypothetical individuals into percentiles and judge whether their wealth
+          is unfairly low, fair, or unfairly high. Vignettes vary effort (hours worked), inheritance, and gender while holding wealth amounts 
+          fixed. We test five hypotheses: systematic underestimation of inequality (especially at the top); meritocratic attribution raises 
+          perceived deservingness; gender bias favors men; non-meritocratic wealth (inheritance) is penalized in fairness judgments; and 
+          self-location biases perceptions and evaluations. The study links perceptions, fairness norms, and causal attributions,
+          informing debates on distributive justice and support for
         </p>
-             <!-- Embedded PDF viewer (works on GitHub Pages). Replace filename once uploaded. -->
-     <!--     <object class="pdf-embed" data="master_thesis.pdf#view=FitH" type="application/pdf">
+        <!-- Embedded PDF viewer placeholder -->
+        <!--
+        <object class="pdf-embed" data="master_thesis.pdf#view=FitH" type="application/pdf">
           <iframe class="pdf-embed" src="master_thesis.pdf"></iframe>
-        </object> -->
+        </object>
+        -->
       </article>
     </section>
 
@@ -100,16 +134,17 @@
           <strong>Abstract.</strong> 
         </p>
         <div class="links">
-          <a href="master_thesis.pdf" target="_blank" rel="noopener">Download thesis (PDF)</a>
+          <!-- <a href="master_thesis.pdf" target="_blank" rel="noopener">Download thesis (PDF)</a> -->
         </div>
-        <!-- Embedded PDF viewer (works on GitHub Pages). Replace filename once uploaded. -->
-     <!--     <object class="pdf-embed" data="master_thesis.pdf#view=FitH" type="application/pdf">
+        <!-- Embedded PDF viewer placeholder -->
+        <!--
+        <object class="pdf-embed" data="master_thesis.pdf#view=FitH" type="application/pdf">
           <iframe class="pdf-embed" src="master_thesis.pdf"></iframe>
-        </object> -->
+        </object>
+        -->
       </article>
     </section>
-
-
+  </main>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
