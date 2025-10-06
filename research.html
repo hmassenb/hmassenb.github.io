@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Research — Hannah Massenbauer</title>
   <meta name="description" content="Research of Hannah Massenbauer" />
   <style>
@@ -14,38 +14,89 @@
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height: 1.6;
-      background-image: url('mountains.jpeg');   /* <-- add this file */
+      color: #111;                                /* readable text in light mode */
+      background-image: url('mountains.jpeg');
       background-size: cover;
       background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-position: 75% center;          /* move left/right by changing 75% */
+      background-attachment: fixed;               /* keep fixed on desktop */
+      background-position: 75% center;
+      background-color: #f7f7f7;                  /* fallback color */
+      -webkit-text-size-adjust: 100%;
     }
 
-    /* Top bar stays solid white above background */
+    /* Force light surfaces & dark text even in dark mode */
+    @media (prefers-color-scheme: dark) {
+      html, body {
+        color: #111 !important;                   /* black-ish text */
+        background-color: #f7f7f7 !important;
+      }
+      header {
+        background: #fff !important;
+        border-bottom-color: #e5e7eb !important;
+      }
+      .wrap {
+        background: #fff !important;
+        border-color: #e5e7eb !important;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
+      }
+      a { color: #0b57d0 !important; }            /* readable links on white */
+    }
+
+    /* Turn off fixed background on touch devices / small screens */
+    @media (pointer: coarse), (max-width: 768px) {
+      body {
+        background-attachment: scroll;
+        background-position: center top;
+      }
+    }
+    /* iOS-specific safety net */
+    @supports (-webkit-touch-callout: none) {
+      body { background-attachment: scroll; }
+    }
+
+    /* Top bar stays solid above background */
     header {
-      position: sticky; top: 0; z-index: 10;
+      position: sticky;
+      top: 0;
+      z-index: 10;                                 /* ensure it stays above content */
       background: #fff;
       border-bottom: 1px solid #e5e7eb;
       padding: 10px 0;
     }
-    @media (prefers-color-scheme: dark) {
-      header { background: #111; border-bottom-color: #222; }
+
+    .bar {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 16px env(safe-area-inset-right) 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .bar { max-width: 980px; margin: 0 auto; padding: 0 16px;
-           display: flex; justify-content: space-between; align-items: center; }
     .brand { font-weight: 700; }
-    nav a { text-decoration: none; margin-left: 14px; color: inherit; }
+    nav a {
+      text-decoration: none;
+      margin-left: 14px;
+      color: inherit;
+      padding: 8px 4px;                            /* easier tap targets */
+      display: inline-block;
+    }
 
     /* White card for content */
     .wrap {
       max-width: 980px;
       margin: 24px auto 64px;
       padding: 20px 16px 64px;
-      background: #fff;                         /* the white surface */
+      background: #fff;
       border: 1px solid #e5e7eb;
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    @media (max-width: 640px) {
+      .wrap {
+        margin: 12px auto 40px;
+        padding: 20px 14px 40px;
+      }
     }
 
     h1 { margin: 8px 0 6px; font-size: 34px; }
@@ -57,7 +108,7 @@
     .pdf-embed { width: 100%; height: 520px; border: 1px solid #e5e7eb; border-radius: 8px; }
     .links { margin-top: 6px; }
     .links a { margin-right: 14px; }
-    footer { margin-top: 36px; font-size: 14px; color: #666; }
+    footer { margin-top: 36px; font-size: 14px; color: #666; text-align: left; }
   </style>
 </head>
 <body>
@@ -67,7 +118,7 @@
       <nav aria-label="Main">
         <a href="index.html">About</a>
         <a href="#" aria-current="page">Research</a>
-        <a href="Massenbauer_CV.pdf" target="_blank" rel="noopener">CV</a>  
+        <a href="Massenbauer_CV.pdf" target="_blank" rel="noopener">CV</a>
       </nav>
     </div>
   </header>
@@ -128,10 +179,10 @@
     <section>
       <h2>Master thesis</h2>
       <article class="entry">
-        <h3><em>[Role of eduacation in the era of automation: A task based approach]</em></h3>
+        <h3><em>[Role of education in the era of automation: A task-based approach]</em></h3>
         <p class="meta">Hannah Massenbauer</p>
         <p class="abstract">
-          <strong>Abstract.</strong> 
+          <strong>Abstract.</strong>
         </p>
         <div class="links">
           <!-- <a href="master_thesis.pdf" target="_blank" rel="noopener">Download thesis (PDF)</a> -->
@@ -144,6 +195,10 @@
         -->
       </article>
     </section>
+
+    <footer>
+      © <span id="year"></span> Hannah Massenbauer
+    </footer>
   </main>
 
   <script>
