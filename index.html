@@ -13,7 +13,7 @@
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height: 1.6;
-      color: #111;                           /* Ensure readable text in light mode */
+      color: #111;                           /* readable text in light mode */
       background-image: url('mountains.jpeg');
       background-size: cover;
       background-repeat: no-repeat;
@@ -23,13 +23,23 @@
       -webkit-text-size-adjust: 100%;
     }
 
-    /* Dark mode: set explicit colors so text never becomes "white on white" */
+    /* Force light theme styling in dark mode (black text, light surfaces) */
     @media (prefers-color-scheme: dark) {
-      body { color: #e5e7eb; background-color: #0a0a0a; }
-      header { background: #111; border-bottom-color: #222; }
-      .wrap { background: #111; border-color: #222; box-shadow: none; }
-      .subtitle { color: #bdbdbd; }
-      a { color: #9ecbff; }
+      html, body {
+        color: #111 !important;              /* black-ish text */
+        background-color: #f7f7f7 !important;
+      }
+      header {
+        background: #fff !important;
+        border-bottom-color: #e5e7eb !important;
+      }
+      .wrap {
+        background: #fff !important;         /* keep the card white */
+        border-color: #e5e7eb !important;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
+      }
+      .subtitle { color: #555 !important; }
+      a { color: #0b57d0 !important; }       /* readable link color on white */
     }
 
     /* Turn off fixed background on touch devices / small screens */
@@ -104,7 +114,7 @@
       width: 160px;
       height: 160px;
       max-width: 100%;
-      height: auto;
+      height: auto;                           /* maintain aspect on small screens */
       object-fit: cover;
       border-radius: 10px;
       display: block;
