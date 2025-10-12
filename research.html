@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <!-- allow pinch zoom; browsers still won’t zoom below 1x, but this keeps UX nice -->
+  <!-- allow safe-area + pinch zoom -->
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes" />
   <title>Research — Hannah Massenbauer</title>
   <meta name="description" content="Research of Hannah Massenbauer" />
@@ -10,7 +10,7 @@
     :root { color-scheme: light dark; }
     * { box-sizing: border-box; }
 
-    /* Page background for desktop */
+    /* Desktop background */
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -19,25 +19,18 @@
       background-image: url('mountains.jpeg');
       background-size: cover;
       background-repeat: no-repeat;
-      background-attachment: fixed;               /* smooth on desktop */
+      background-attachment: fixed;               /* desktop: keep fixed */
       background-position: 75% center;
       background-color: #f7f7f7;
       -webkit-text-size-adjust: 100%;
     }
 
-    /* Force light surfaces & dark text even in dark mode */
+    /* Keep light surfaces even in dark mode */
     @media (prefers-color-scheme: dark) {
-      html, body {
-        color: #111 !important;
-        background-color: #f7f7f7 !important;
-      }
-      header {
-        background: #fff !important;
-        border-bottom-color: #e5e7eb !important;
-      }
+      html, body { color: #111 !important; background-color: #f7f7f7 !important; }
+      header { background: #fff !important; border-bottom-color: #e5e7eb !important; }
       .wrap {
-        background: #fff !important;
-        border-color: #e5e7eb !important;
+        background: #fff !important; border-color: #e5e7eb !important;
         box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
       }
       a { color: #0b57d0 !important; }
@@ -45,28 +38,37 @@
 
     /* Header */
     header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: #fff;
-      border-bottom: 1px solid #e5e7eb;
-      padding: 10px 0;
+      position: sticky; top: 0; z-index: 10;
+      background: #fff; border-bottom: 1px solid #e5e7eb; padding: 10px 0;
     }
     .bar {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 0 16px env(safe-area-inset-right) 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      max-width: 980px; margin: 0 auto; padding: 0 16px env(safe-area-inset-right) 0;
+      display: flex; justify-content: space-between; align-items: center;
     }
     .brand { font-weight: 700; }
-    nav a {
-      text-decoration: none;
-      margin-left: 14px;
-      color: inherit;
-      padding: 8px 4px;                           /* easier tap targets */
-      display: inline-block;
+    nav a { text-decoration: none; margin-left: 14px; color: inherit; padding: 8px 4px; display: inline-block; }
+
+    /* Mobile TOP hero image (full-bleed) */
+    .hero-bleed { display: none; }
+    @media (max-width: 768px) {
+      body {
+        /* avoid fixed backgrounds on mobile for smooth scroll */
+        background-image: none; background-color: #f7f7f7;
+      }
+      .hero-bleed {
+        display: block;
+        position: relative;
+        height: 40vh;                             /* how much photo to show */
+        background-image: url('mountains.jpeg');
+        background-size: cover;
+        background-position: 75% center;
+        background-repeat: no-repeat;
+      }
+      .hero-bleed::after {                        /* subtle overlay for readability */
+        content: "";
+        position: absolute; inset: 0;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.35));
+      }
     }
 
     /* Content card */
@@ -80,6 +82,9 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       position: relative;
     }
+    @media (max-width: 768px) {
+      .wrap { margin: -36px auto 40px; padding: 20px 14px 40px; } /* overlap the hero */
+    }
 
     /* Typography */
     h1 { margin: 8px 0 6px; font-size: 34px; }
@@ -92,40 +97,6 @@
     .links { margin-top: 6px; }
     .links a { margin-right: 14px; }
     footer { margin-top: 36px; font-size: 14px; color: #666; text-align: left; }
-
-    /* MOBILE-SPECIFIC ENHANCEMENTS */
-    @media (max-width: 768px) {
-      /* Avoid jank: no fixed background on mobile */
-      body {
-        background-attachment: scroll;
-        background-position: center top;
-      }
-
-      /* Slightly overlap card with the header area */
-      .wrap {
-        margin: 12px auto 32px;
-        padding: 20px 14px 40px;
-      }
-
-      /* Full-bleed background panel at the end (reveals the photo elegantly) */
-      .bg-panel {
-        height: 42vh;                                  /* how much photo to show */
-        background-image: url('mountains.jpeg');
-        background-size: cover;
-        background-position: 75% center;
-        background-repeat: no-repeat;
-        border-top: 1px solid #e5e7eb;
-        border-bottom: 1px solid #e5e7eb;
-        position: relative;
-      }
-      .bg-panel::before {                               /* subtle gradient for polish */
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to bottom, rgba(255,255,255,0.0), rgba(255,255,255,0.25));
-        pointer-events: none;
-      }
-    }
   </style>
 </head>
 <body>
@@ -139,6 +110,9 @@
       </nav>
     </div>
   </header>
+
+  <!-- Mobile-only full-bleed image on TOP -->
+  <div class="hero-bleed" aria-hidden="true"></div>
 
   <main class="wrap">
     <h1>Research</h1>
@@ -181,7 +155,8 @@
           systematic underestimation of inequality (especially at the top); meritocratic attribution raises perceived deservingness; 
           gender bias favors men; non-meritocratic wealth (inheritance) is penalized in fairness judgments; and self-location biases perceptions
           and evaluations. The study links perceptions, fairness norms, and causal attributions, informing debates on distributive justice 
-          and support for redistribution.    </p>
+          and support for redistribution.
+        </p>
       </article>
     </section>
 
@@ -192,17 +167,15 @@
         <h3><em>Role of education in the era of automation: A task-based approach</em></h3>
         <p class="meta">Hannah Massenbauer</p>
         <p class="abstract">
-          Recent technological advancements have evoked discussion about subsitution and complementation of tasks. 
-            According to the skill-biased technology change hypothesis higher education plays a pivotal role. A second
-            approach the routine-biased technology change focus on the task composition of a job - in particular the 
-            routine task intensity (RTI). This paper is an examination of the link between higher education and routine 
-            task intensity sheds light on how these two factors are intertwined.  Using data from the European Social 
-            Survey covering 18 European countries from 2012 to 2018 I find that higher education significantly reduces 
-            RTI by 20\%. This implies that higher educated people face less risk of workplace automation and could profit 
-            from a complementary usage. However, the extent to which higher education reduces routine intense tasks varies
-            between European countries and demographic subgroups such as gender and income deciles. A dynamic analysis
-            reveals a divergence of RTI jobs across Europe. This paper sheds light on compositional differences across EU
-            countries and their implications for inequality and future policy.}      </p>
+          Recent technological advancements have evoked discussion about substitution and complementation of workers’ tasks. 
+          The skill-biased technological change hypothesis focused on the role of higher education. A newer approach—the
+          routine-biased technological change hypothesis—focuses on a job’s task composition, in particular the 
+          routine task intensity (RTI). This paper examines the link between higher education and RTI and how these two factors are intertwined.
+          Using data from the European Social Survey covering 18 European countries from 2012 to 2018, I find that higher education significantly reduces 
+          RTI by 20%. This implies that higher educated people face less risk of workplace automation and could benefit from complementary usage. 
+          However, the extent to which higher education reduces routine-intense tasks varies between European countries and demographic subgroups 
+          such as gender and income deciles. A dynamic analysis reveals a divergence of RTI across Europe, with implications for inequality and policy.
+        </p>
         <div class="links">
           <!-- <a href="master_thesis.pdf" target="_blank" rel="noopener">Download thesis (PDF)</a> -->
         </div>
@@ -213,9 +186,6 @@
       © <span id="year"></span> Hannah Massenbauer
     </footer>
   </main>
-
-  <!-- Mobile-only full-bleed background reveal -->
-  <div class="bg-panel" aria-hidden="true"></div>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
