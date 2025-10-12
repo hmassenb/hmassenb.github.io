@@ -10,7 +10,7 @@
     :root { color-scheme: light dark; }
     * { box-sizing: border-box; }
 
-    /* Desktop background = full page, fixed */
+    /* Background on ALL devices (fixed only on desktop) */
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -19,21 +19,24 @@
       background-image: url('mountains.jpeg');
       background-size: cover;
       background-repeat: no-repeat;
-      background-attachment: fixed;              /* desktop only */
+      background-attachment: fixed;      /* desktop default; mobile overrides below */
       background-position: 75% center;
       background-color: #f7f7f7;
       -webkit-text-size-adjust: 100%;
     }
 
-    /* Keep light surfaces/dark text even in dark mode */
+    /* Dark mode: keep dark text + light surfaces, but DON'T force wrap on mobile */
     @media (prefers-color-scheme: dark) {
-      html, body { color: #111 !important; background-color: #f7f7f7 !important; }
-      header { background: #fff !important; border-bottom-color: #e5e7eb !important; }
+      html, body { color: #111; background-color: #f7f7f7; }
+      header { background: #fff; border-bottom-color: #e5e7eb; }
+    }
+    /* Only on DESKTOP in dark mode should the wrap be solid white */
+    @media (prefers-color-scheme: dark) and (min-width: 769px) {
       .wrap {
-        background: #fff !important; border-color: #e5e7eb !important;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
+        background: #fff;
+        border-color: #e5e7eb;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       }
-      a { color: #0b57d0 !important; }
     }
 
     /* Header */
@@ -48,7 +51,7 @@
     .brand { font-weight: 700; }
     nav a { text-decoration: none; margin-left: 14px; color: inherit; padding: 8px 4px; display: inline-block; }
 
-    /* Content card: solid on desktop */
+    /* Content card defaults (desktop) */
     .wrap {
       max-width: 980px;
       margin: 24px auto 64px;
@@ -60,19 +63,19 @@
       position: relative;
     }
 
-    /* On phones: keep background behind content + frosted card for readability */
+    /* MOBILE: smooth background + frosted glass card so the image shows through */
     @media (max-width: 768px) {
       body {
-        background-attachment: scroll;           /* smoother scroll on mobile */
+        background-attachment: scroll;       /* avoids jank on iOS/Android */
         background-position: center top;
       }
       .wrap {
         margin: 16px auto 44px;
         padding: 24px 18px 44px;
-        background: rgba(255,255,255,0.85);      /* frosted look so photo shows through */
-        border: 1px solid rgba(229,231,235,0.8);
+        background: rgba(255,255,255,0.85) !important;    /* ensure it beats any dark-mode rule */
+        border: 1px solid rgba(229,231,235,0.85) !important;
         backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);      /* iOS Safari */
+        -webkit-backdrop-filter: blur(6px);
       }
     }
 
@@ -159,14 +162,14 @@
         <h3><em>Role of education in the era of automation: A task-based approach</em></h3>
         <p class="meta">Hannah Massenbauer</p>
         <p class="abstract">
-          Recent technological advancements have evoked discussion about substitution and complementation of workers’ tasks. 
-          The skill-biased technological change hypothesis focused on the role of higher education. A newer approach—the
-          routine-biased technological change hypothesis—focuses on a job’s task composition, in particular the 
-          routine task intensity (RTI). This paper examines the link between higher education and RTI and how these two factors are intertwined.
-          Using data from the European Social Survey covering 18 European countries from 2012 to 2018, I find that higher education significantly reduces 
-          RTI by 20%. This implies that higher educated people face less risk of workplace automation and could benefit from complementary usage. 
-          However, the extent to which higher education reduces routine-intense tasks varies between European countries and demographic subgroups 
-          such as gender and income deciles. A dynamic analysis reveals a divergence of RTI across Europe, with implications for inequality and policy.
+          <strong>Abstract.</strong> Recent technological advancements have evoked discussion about substitution and complementation of workers’ tasks. 
+          The skill-biased technological change hypothesis focused on the role of higher education. A newer approach—the routine-biased technological
+          change hypothesis—focuses on a job’s task composition, in particular the routine task intensity (RTI). This paper examines the link between 
+          higher education and RTI and how these two factors are intertwined. Using data from the European Social Survey covering 18 European countries
+          from 2012 to 2018, I find that higher education significantly reduces RTI by 20%. This implies that higher educated people face less risk of
+          workplace automation and could benefit from complementary usage. However, the extent to which higher education reduces routine-intense tasks 
+          varies between European countries and demographic subgroups such as gender and income deciles. A dynamic analysis reveals a divergence of RTI
+          across Europe, with implications for inequality and policy.
         </p>
         <div class="links">
           <!-- <a href="master_thesis.pdf" target="_blank" rel="noopener">Download thesis (PDF)</a> -->
