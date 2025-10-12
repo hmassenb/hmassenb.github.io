@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <!-- safe-area + pinch zoom -->
-  <meta name="viewport" content="width=device-width, initial-scale=0.5, viewport-fit=cover, user-scalable=yes" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes" />
   <title>Research — Hannah Massenbauer</title>
   <meta name="description" content="Research of Hannah Massenbauer" />
   <style>
     :root { color-scheme: light dark; }
     * { box-sizing: border-box; }
 
-    /* Background on ALL devices (fixed only on desktop) */
+    /* Desktop background (kept) */
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -19,24 +19,43 @@
       background-image: url('mountains.jpeg');
       background-size: cover;
       background-repeat: no-repeat;
-      background-attachment: fixed;      /* desktop default; mobile overrides below */
+      background-attachment: fixed;      /* works on desktop */
       background-position: 75% center;
       background-color: #f7f7f7;
       -webkit-text-size-adjust: 100%;
     }
 
-    /* Dark mode: keep dark text + light surfaces, but DON'T force wrap on mobile */
-    @media (prefers-color-scheme: dark) {
-      html, body { color: #111; background-color: #f7f7f7; }
-      header { background: #fff; border-bottom-color: #e5e7eb; }
-    }
-    /* Only on DESKTOP in dark mode should the wrap be solid white */
-    @media (prefers-color-scheme: dark) and (min-width: 769px) {
-      .wrap {
-        background: #fff;
-        border-color: #e5e7eb;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    /* Fixed background layer for MOBILE (emulates background-attachment: fixed) */
+    .bg-fixed { display: none; }
+    @media (max-width: 768px) {
+      /* Turn off body background on mobile and use a fixed layer instead */
+      body {
+        background-image: none;
+        background-color: transparent;
       }
+      .bg-fixed {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: -1;                        /* stay behind all content */
+        background-image: url('mountains.jpeg');
+        background-size: cover;
+        background-position: 75% center;
+        background-repeat: no-repeat;
+        transform: translateZ(0);           /* GPU hint for smoother scroll */
+        will-change: transform;
+      }
+    }
+
+    /* Keep light surfaces/dark text even in dark mode */
+    @media (prefers-color-scheme: dark) {
+      html, body { color: #111 !important; background-color: #f7f7f7 !important; }
+      header { background: #fff !important; border-bottom-color: #e5e7eb !important; }
+      /* Solid white card in dark mode on desktop only */
+      @media (min-width: 769px) {
+        .wrap { background: #fff !important; border-color: #e5e7eb !important; box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important; }
+      }
+      a { color: #0b57d0 !important; }
     }
 
     /* Header */
@@ -51,7 +70,7 @@
     .brand { font-weight: 700; }
     nav a { text-decoration: none; margin-left: 14px; color: inherit; padding: 8px 4px; display: inline-block; }
 
-    /* Content card defaults (desktop) */
+    /* Content card (solid white like on laptop) */
     .wrap {
       max-width: 980px;
       margin: 24px auto 64px;
@@ -61,22 +80,6 @@
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       position: relative;
-    }
-
-    /* MOBILE: smooth background + frosted glass card so the image shows through */
-    @media (max-width: 768px) {
-      body {
-        background-attachment: scroll;       /* avoids jank on iOS/Android */
-        background-position: center top;
-      }
-      .wrap {
-        margin: 16px auto 44px;
-        padding: 24px 18px 44px;
-        background: rgba(255,255,255,0.85) !important;    /* ensure it beats any dark-mode rule */
-        border: 1px solid rgba(229,231,235,0.85) !important;
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-      }
     }
 
     h1 { margin: 8px 0 6px; font-size: 34px; }
@@ -92,6 +95,9 @@
   </style>
 </head>
 <body>
+  <!-- Fixed background layer for mobile (hidden on desktop) -->
+  <div class="bg-fixed" aria-hidden="true"></div>
+
   <header>
     <div class="bar">
       <div class="brand">Hannah Massenbauer</div>
