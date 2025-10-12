@@ -10,6 +10,7 @@
     :root { color-scheme: light dark; }
     * { box-sizing: border-box; }
 
+    /* Desktop background (kept as-is) */
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -18,16 +19,37 @@
       background-image: url('mountains.jpeg');
       background-size: cover;
       background-repeat: no-repeat;
-      background-attachment: fixed;          /* desktop: keep fixed */
+      background-attachment: fixed;          /* works on desktop */
       background-position: 75% center;
       background-color: #f7f7f7;             /* fallback color */
       -webkit-text-size-adjust: 100%;
     }
 
-    /* Force light theme styling in dark mode (black text, light surfaces) */
+    /* Fixed, full-screen background layer for MOBILE (emulates background-attachment: fixed) */
+    .bg-fixed { display: none; }
+    @media (max-width: 768px) {
+      body {
+        background-image: none;              /* turn off body bg on mobile */
+        background-color: transparent;
+      }
+      .bg-fixed {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: -1;                         /* stay behind everything */
+        background-image: url('mountains.jpeg');
+        background-size: cover;
+        background-position: 75% center;
+        background-repeat: no-repeat;
+        transform: translateZ(0);            /* smooth scrolling on iOS/Android */
+        will-change: transform;
+      }
+    }
+
+    /* Force light theme styling in dark mode (readable black text) */
     @media (prefers-color-scheme: dark) {
       html, body {
-        color: #111 !important;              /* black-ish text */
+        color: #111 !important;
         background-color: #f7f7f7 !important;
       }
       header {
@@ -41,18 +63,6 @@
       }
       .subtitle { color: #555 !important; }
       a { color: #0b57d0 !important; }       /* readable link color on white */
-    }
-
-    /* Turn off fixed background on touch devices / small screens */
-    @media (pointer: coarse), (max-width: 768px) {
-      body {
-        background-attachment: scroll;
-        background-position: center top;
-      }
-    }
-    /* iOS-specific safety net */
-    @supports (-webkit-touch-callout: none) {
-      body { background-attachment: scroll; }
     }
 
     /* Top bar */
@@ -99,7 +109,7 @@
     @media (max-width: 640px) {
       .wrap {
         margin: 12px auto 40px;
-        padding: 20px 14px 40px;
+        padding: 22px 18px 40px;              /* a touch more side padding for comfort */
       }
     }
 
@@ -133,30 +143,12 @@
     h2 { margin: 0 0 10px; font-size: 20px; }
     ul { padding-left: 18px; }
     footer { margin-top: 36px; font-size: 14px; color: inherit; }
-
-    /* Mobile-only full-bleed background reveal at the bottom */
-    @media (max-width: 768px) {
-      .bg-panel {
-        height: 42vh;                                  /* how much photo to show */
-        background-image: url('mountains.jpeg');
-        background-size: cover;
-        background-position: 75% center;
-        background-repeat: no-repeat;
-        border-top: 1px solid #e5e7eb;
-        border-bottom: 1px solid #e5e7eb;
-        position: relative;
-      }
-      .bg-panel::before {                               /* subtle gradient for polish */
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to bottom, rgba(255,255,255,0.0), rgba(255,255,255,0.25));
-        pointer-events: none;
-      }
-    }
   </style>
 </head>
 <body>
+  <!-- Fixed background layer for mobile (hidden on desktop) -->
+  <div class="bg-fixed" aria-hidden="true"></div>
+
   <header>
     <div class="bar">
       <div class="brand">Hannah Massenbauer</div>
@@ -199,16 +191,13 @@
     <section id="contact">
       <h2>Contact</h2>
       <p>Email: <a href="mailto:hannah.massenbauer@gmail.com">hannah.massenbauer@gmail.com</a></p>
-      <p><a href="https://github.com/hmassenb" target="_blank" rel="noopener">GitHub</a> · <a href="https://linkedin.com/in/hannah-massenbauer-8964a2214" target="_blank" rel="noopener">LinkedIn</a></p>
-    </section>
+      <p><a href="https://github.com/hmassenb" target="_blank" rel="noopener">GitHub</a> · <a href="https://linkedin.com/in/hannah-massenbauer-8964a2214" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://bsky.app/profile/hannahmassenbauer.bsky.social" target="_blank" rel="noopener">Bluesky</a> </p>
+    </section> 
 
     <footer>
       © <span id="year"></span> Hannah Massenbauer
     </footer>
   </main>
-
-  <!-- Mobile-only full-bleed background reveal -->
-  <div class="bg-panel" aria-hidden="true"></div>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
