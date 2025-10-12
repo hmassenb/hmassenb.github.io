@@ -19,21 +19,51 @@
       background-image: url('mountains.jpeg');
       background-size: cover;
       background-repeat: no-repeat;
-      background-attachment: fixed;          /* desktop only */
+      background-attachment: fixed;          /* works on desktop */
       background-position: 75% center;
       background-color: #f7f7f7;
       -webkit-text-size-adjust: 100%;
     }
 
-    /* Header */
+    /* Mobile: use a fixed background layer that starts below the header */
+    .bg-under-header { display: none; }
+    @media (max-width: 768px) {
+      body {
+        background-image: none;              /* disable body bg on phones */
+        background-color: #f7f7f7;
+      }
+      .bg-under-header {
+        display: block;
+        position: fixed;
+        top: var(--head-h, 60px);            /* filled by JS; fallback 60px */
+        left: 0; right: 0; bottom: 0;
+        background-image: url('mountains.jpeg');
+        background-size: cover;
+        background-position: 75% center;
+        background-repeat: no-repeat;
+        z-index: 0;                           /* behind content, not behind header */
+      }
+    }
+
+    /* Force light theme styling in dark mode (readable black text) */
+    @media (prefers-color-scheme: dark) {
+      html, body { color: #111 !important; background-color: #f7f7f7 !important; }
+      header { background: #fff !important; border-bottom-color: #e5e7eb !important; }
+      .wrap { background: #fff !important; border-color: #e5e7eb !important; box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important; }
+      .subtitle { color: #555 !important; }
+      a { color: #0b57d0 !important; }
+    }
+
+    /* Top bar */
     header {
       position: sticky;
       top: 0;
       background: #fff;
       border-bottom: 1px solid #e5e7eb;
       padding: 10px 0;
-      z-index: 10;                           /* stay above the banner */
+      z-index: 10;                           /* header sits above the bg layer */
     }
+
     .bar {
       max-width: 980px;
       margin: 0 auto;
@@ -42,59 +72,38 @@
       justify-content: space-between;
       align-items: center;
     }
+
     .brand { font-weight: 700; }
+
     nav a {
       text-decoration: none;
       margin-left: 14px;
       color: inherit;
-      padding: 8px 4px;
+      padding: 8px 4px;                      /* easier taps */
       display: inline-block;
     }
 
-    /* Content card */
+    /* Page container */
     .wrap {
       max-width: 980px;
       margin: 24px auto 64px;
       padding: 24px 20px 64px;
-      background: #fff;
+      background: #fff;                       /* solid card over the bg */
       border: 1px solid #e5e7eb;
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       position: relative;
+      z-index: 1;                             /* keep above .bg-under-header */
     }
 
-    /* “Hero” banner visible only on mobile — sits BELOW header, ABOVE content */
-    .hero-bleed { display: none; }
-    @media (max-width: 768px) {
-      /* Turn off body background on phones so it's not behind the header */
-      body {
-        background-image: none;
-        background-color: #f7f7f7;
-      }
-
-      .hero-bleed {
-        display: block;
-        position: relative;
-        height: 40vh;                         /* adjust 30–45vh to taste */
-        background-image: url('mountains.jpeg');
-        background-size: cover;
-        background-position: 75% center;
-        background-repeat: no-repeat;
-      }
-      .hero-bleed::after {                    /* subtle overlay for contrast */
-        content: "";
-        position: absolute; inset: 0;
-        background: linear-gradient(to bottom, rgba(0,0,0,0.12), rgba(0,0,0,0.28));
-      }
-
-      /* Comfortable padding so the name doesn't hug the edges */
+    @media (max-width: 640px) {
       .wrap {
         margin: 12px auto 40px;
-        padding: 22px 18px 40px;
+        padding: 22px 18px 40px;              /* comfy edges on phones */
       }
     }
 
-    /* Hero (portrait + name) */
+    /* Hero */
     .hero {
       display: grid;
       grid-template-columns: 160px 1fr;
@@ -102,15 +111,17 @@
       align-items: center;
       margin-top: 8px;
     }
+
     .headshot {
       width: 160px;
       height: 160px;
       max-width: 100%;
-      height: auto;            /* maintain aspect on small screens */
+      height: auto;                           /* maintain aspect on small screens */
       object-fit: cover;
       border-radius: 10px;
       display: block;
     }
+
     @media (max-width: 640px) {
       .hero { grid-template-columns: 1fr; }
     }
@@ -122,28 +133,12 @@
     h2 { margin: 0 0 10px; font-size: 20px; }
     ul { padding-left: 18px; }
     footer { margin-top: 36px; font-size: 14px; color: inherit; }
-
-    /* Dark-mode readability (keep light surfaces & dark text) */
-    @media (prefers-color-scheme: dark) {
-      html, body {
-        color: #111 !important;
-        background-color: #f7f7f7 !important;
-      }
-      header {
-        background: #fff !important;
-        border-bottom-color: #e5e7eb !important;
-      }
-      .wrap {
-        background: #fff !important;
-        border-color: #e5e7eb !important;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
-      }
-      .subtitle { color: #555 !important; }
-      a { color: #0b57d0 !important; }
-    }
   </style>
 </head>
 <body>
+  <!-- Mobile-only fixed background that starts BELOW the header -->
+  <div class="bg-under-header" aria-hidden="true"></div>
+
   <header>
     <div class="bar">
       <div class="brand">Hannah Massenbauer</div>
@@ -154,9 +149,6 @@
       </nav>
     </div>
   </header>
-
-  <!-- Mobile-only banner: BELOW header, ABOVE content -->
-  <div class="hero-bleed" aria-hidden="true"></div>
 
   <main class="wrap">
     <div class="hero">
@@ -175,7 +167,8 @@
 
     <section id="research-teaser">
       <h2>Research</h2>
-      <p>I study inequality in labor markets—its drivers (especially technological change), how people perceive it, and the consequences of those perceptions.</p>
+      <p>In my research I am interested in labor markets and income &amp; wealth inequalities.</p>
+      <p>I want to understand the drivers of inequality, such as technological change and how people perceive and are impacted by these inequalities.</p>
 
       <h3>Working papers:</h3>
       <ul>
@@ -197,6 +190,15 @@
   </main>
 
   <script>
+    // Set a CSS variable with the header height so the mobile background starts below it
+    function setHeaderHeightVar() {
+      const h = document.querySelector('header');
+      if (!h) return;
+      document.documentElement.style.setProperty('--head-h', h.getBoundingClientRect().height + 'px');
+    }
+    window.addEventListener('load', setHeaderHeightVar);
+    window.addEventListener('resize', setHeaderHeightVar);
+
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
