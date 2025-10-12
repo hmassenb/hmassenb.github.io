@@ -2,15 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <!-- allow safe-area + pinch zoom -->
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes" />
-  <title>Research — Hannah Massenbauer</title>
-  <meta name="description" content="Research of Hannah Massenbauer" />
+  <title>Hannah Massenbauer</title>
+  <meta name="description" content="Predoctoral Researcher in Economics — Labor, Inequality, Applied Econometrics" />
   <style>
     :root { color-scheme: light dark; }
     * { box-sizing: border-box; }
 
-    /* Desktop background */
+    /* Desktop background = full page, fixed */
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -19,20 +18,25 @@
       background-image: url('mountains.jpeg');
       background-size: cover;
       background-repeat: no-repeat;
-      background-attachment: fixed;               /* desktop: keep fixed */
+      background-attachment: fixed;               /* desktop only */
       background-position: 75% center;
       background-color: #f7f7f7;
       -webkit-text-size-adjust: 100%;
     }
 
-    /* Keep light surfaces even in dark mode */
+    /* Keep light surfaces/dark text even in dark mode */
     @media (prefers-color-scheme: dark) {
-      html, body { color: #111 !important; background-color: #f7f7f7 !important; }
+      html, body {
+        color: #111 !important;
+        background-color: #f7f7f7 !important;
+      }
       header { background: #fff !important; border-bottom-color: #e5e7eb !important; }
       .wrap {
-        background: #fff !important; border-color: #e5e7eb !important;
+        background: #fff !important;
+        border-color: #e5e7eb !important;
         box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
       }
+      .subtitle { color: #555 !important; }
       a { color: #0b57d0 !important; }
     }
 
@@ -42,61 +46,62 @@
       background: #fff; border-bottom: 1px solid #e5e7eb; padding: 10px 0;
     }
     .bar {
-      max-width: 980px; margin: 0 auto; padding: 0 16px env(safe-area-inset-right) 0;
+      max-width: 980px; margin: 0 auto;
+      padding: 0 16px env(safe-area-inset-right) 0;
       display: flex; justify-content: space-between; align-items: center;
     }
     .brand { font-weight: 700; }
     nav a { text-decoration: none; margin-left: 14px; color: inherit; padding: 8px 4px; display: inline-block; }
 
-    /* Mobile TOP hero image (full-bleed) */
-    .hero-bleed { display: none; }
-    @media (max-width: 768px) {
-      body {
-        /* avoid fixed backgrounds on mobile for smooth scroll */
-        background-image: none; background-color: #f7f7f7;
-      }
-      .hero-bleed {
-        display: block;
-        position: relative;
-        height: 40vh;                             /* how much photo to show */
-        background-image: url('mountains.jpeg');
-        background-size: cover;
-        background-position: 75% center;
-        background-repeat: no-repeat;
-      }
-      .hero-bleed::after {                        /* subtle overlay for readability */
-        content: "";
-        position: absolute; inset: 0;
-        background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.35));
-      }
-    }
-
-    /* Content card */
+    /* Content card: solid on desktop */
     .wrap {
       max-width: 980px;
       margin: 24px auto 64px;
-      padding: 20px 16px 64px;
+      padding: 28px 24px 64px;
       background: #fff;
       border: 1px solid #e5e7eb;
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       position: relative;
     }
+
+    /* On phones: show background *behind* a frosted card + comfy padding */
     @media (max-width: 768px) {
-      .wrap { margin: -36px auto 40px; padding: 20px 14px 40px; } /* overlap the hero */
+      body {
+        background-attachment: scroll;            /* smooth scrolling on mobile */
+        background-position: center top;
+      }
+      .wrap {
+        margin: 16px auto 44px;
+        padding: 26px 18px 44px;                  /* more side padding so the name isn’t hugging the edge */
+        background: rgba(255,255,255,0.85);       /* frosted look */
+        border: 1px solid rgba(229,231,235,0.8);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);       /* iOS Safari */
+      }
     }
 
-    /* Typography */
-    h1 { margin: 8px 0 6px; font-size: 34px; }
-    h2 { margin: 24px 0 10px; font-size: 22px; }
-    h3 { margin: 14px 0 6px; font-size: 18px; }
-    .entry { margin-bottom: 22px; }
-    .meta { color: #555; margin: 0 0 8px; }
-    .abstract { margin: 8px 0 0; }
-    .pdf-embed { width: 100%; height: 520px; border: 1px solid #e5e7eb; border-radius: 8px; }
-    .links { margin-top: 6px; }
-    .links a { margin-right: 14px; }
-    footer { margin-top: 36px; font-size: 14px; color: #666; text-align: left; }
+    /* Page hero (portrait + name) */
+    .hero {
+      display: grid; grid-template-columns: 160px 1fr;
+      gap: 20px; align-items: center; margin-top: 4px;
+    }
+    .headshot {
+      width: 160px; height: 160px; max-width: 100%;
+      height: auto; object-fit: cover; border-radius: 10px; display: block;
+    }
+    @media (max-width: 640px) {
+      .hero { grid-template-columns: 1fr; gap: 14px; }
+    }
+
+    h1 { margin: 0 0 8px; font-size: 36px; }
+    @media (max-width: 768px) { h1 { font-size: 32px; } }  /* slightly smaller on phones */
+    .subtitle { margin: 0; color: #555; }
+
+    section { margin-top: 28px; }
+    h2 { margin: 0 0 10px; font-size: 20px; }
+    ul { padding-left: 18px; }
+    footer { margin-top: 36px; font-size: 14px; color: inherit; }
   </style>
 </head>
 <body>
@@ -104,82 +109,45 @@
     <div class="bar">
       <div class="brand">Hannah Massenbauer</div>
       <nav aria-label="Main">
-        <a href="index.html">About</a>
-        <a href="#" aria-current="page">Research</a>
+        <a href="index.html" aria-current="page">About</a>
+        <a href="research.html">Research</a>
         <a href="Massenbauer_CV.pdf" target="_blank" rel="noopener">CV</a>
       </nav>
     </div>
   </header>
 
-  <!-- Mobile-only full-bleed image on TOP -->
-  <div class="hero-bleed" aria-hidden="true"></div>
-
   <main class="wrap">
-    <h1>Research</h1>
+    <div class="hero">
+      <img class="headshot" src="portrait.jpeg" alt="Portrait of Hannah Massenbauer" />
+      <div>
+        <h1>Hannah Massenbauer</h1>
+        <p class="subtitle">Predoctoral Researcher in Economics</p>
+      </div>
+    </div>
 
-    <!-- Working Papers -->
-    <section>
-      <h2>Working papers</h2>
-
-      <article class="entry">
-        <h3><em>The Effects of Minimum Wage Increases on Poverty and Food Hardship</em></h3>
-        <p class="meta">(with Lukas Lehner, Zachary Parolin, Rafael Pintro Schmitt)</p>
-        <p class="links">
-          <a href="https://www.iza.org/publications/dp/18142/the-effects-of-minimum-wage-increases-on-poverty-and-food-hardship" target="_blank" rel="noopener">
-            IZA Discussion Paper 18142
-          </a>
-        </p>
-        <p class="abstract">
-          <strong>Abstract.</strong> We study how minimum wage (MW) increases affect poverty and food hardship in the
-          United States from 1981–2019. Applying stacked difference-in-difference models and the
-          Supplemental Poverty Measure (SPM), we find that a $1 MW increase reduces poverty by
-          0.3 to 0.7 percentage points among all working-age adults, and by 1.2 to 1.7 percentage
-          points among individuals most likely to work in MW jobs. We also find that a $1 MW
-          increase reduces food insufficiency by 1.5 percentage points among likely-MW workers.
-          Effects on poverty are partially offset by higher living costs in MW-increasing states. Our
-          findings are robust across methodological choices that have divided the recent literature.
-          Overall, MW increases meaningfully reduce poverty and food hardship for the workers
-          most directly affected and deliver modest improvements for the broader working-age
-          population.
-        </p>
-      </article>
-
-      <article class="entry">
-        <h3><em>(Mis)perceptions of Inequality and Their Determinants</em></h3>
-        <p class="meta">(with Franetovic, Löffler, Memmen, Moya, Schmitt)</p>
-        <p class="abstract">
-          <strong>Abstract.</strong> We study how people perceive and evaluate wealth inequality in Germany. We design an online survey with 
-          a factorial vignette experiment and ask respondents i) estimate euro amounts at key percentiles of the wealth distribution and ii)
-          place hypothetical individuals with wealth levels and let them estimate the position and judge the fairness of their wealth. 
-          Vignettes vary meritocratic and sociodemographic factors while holding wealth amounts fixed. We test five hypotheses: 
-          systematic underestimation of inequality (especially at the top); meritocratic attribution raises perceived deservingness; 
-          gender bias favors men; non-meritocratic wealth (inheritance) is penalized in fairness judgments; and self-location biases perceptions
-          and evaluations. The study links perceptions, fairness norms, and causal attributions, informing debates on distributive justice 
-          and support for redistribution.
-        </p>
-      </article>
+    <section id="about">
+      <h2>About me</h2>
+      <p>Hi!</p>
+      <p>I am Hannah, I am a pre-doctoral researcher in economics at the University of Zurich and I like mountains.</p>
     </section>
 
-    <!-- Master Thesis -->
-    <section>
-      <h2>Master thesis</h2>
-      <article class="entry">
-        <h3><em>Role of education in the era of automation: A task-based approach</em></h3>
-        <p class="meta">Hannah Massenbauer</p>
-        <p class="abstract">
-          Recent technological advancements have evoked discussion about substitution and complementation of workers’ tasks. 
-          The skill-biased technological change hypothesis focused on the role of higher education. A newer approach—the
-          routine-biased technological change hypothesis—focuses on a job’s task composition, in particular the 
-          routine task intensity (RTI). This paper examines the link between higher education and RTI and how these two factors are intertwined.
-          Using data from the European Social Survey covering 18 European countries from 2012 to 2018, I find that higher education significantly reduces 
-          RTI by 20%. This implies that higher educated people face less risk of workplace automation and could benefit from complementary usage. 
-          However, the extent to which higher education reduces routine-intense tasks varies between European countries and demographic subgroups 
-          such as gender and income deciles. A dynamic analysis reveals a divergence of RTI across Europe, with implications for inequality and policy.
-        </p>
-        <div class="links">
-          <!-- <a href="master_thesis.pdf" target="_blank" rel="noopener">Download thesis (PDF)</a> -->
-        </div>
-      </article>
+    <section id="research-teaser">
+      <h2>Research</h2>
+      <p>In my research I am interested in inequalities on labor markets and income &amp; wealth inequalities.</p>
+      <p>I want to understand the drivers of inequality, such as technological change, and how people perceive these inequalities and what the consequences are.</p>
+
+      <h3>Working papers:</h3>
+      <ul>
+        <li><em>"The Effects of Minimum Wage Increases on Poverty and Food Hardship"</em> (with Lehner, Parolin, Schmitt)
+          <a href="https://www.iza.org/publications/dp/18142/the-effects-of-minimum-wage-increases-on-poverty-and-food-hardship" target="_blank" rel="noopener">IZA working paper</a></li>
+        <li><em>(Mis)perceptions of Inequality and their determinants"</em> (with Franetovic, Löffler, Memmen, Moya, Schmitt)</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:hannah.massenbauer@gmail.com">hannah.massenbauer@gmail.com</a></p>
+      <p><a href="https://github.com/hmassenb" target="_blank" rel="noopener">GitHub</a> · <a href="https://linkedin.com/in/hannah-massenbauer-8964a2214" target="_blank" rel="noopener">LinkedIn</a></p>
     </section>
 
     <footer>
