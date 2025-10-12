@@ -15,66 +15,25 @@
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height: 1.6;
-      color: #111;                           /* readable text in light mode */
+      color: #111;
       background-image: url('mountains.jpeg');
       background-size: cover;
       background-repeat: no-repeat;
-      background-attachment: fixed;          /* works on desktop */
+      background-attachment: fixed;          /* desktop only */
       background-position: 75% center;
-      background-color: #f7f7f7;             /* fallback color */
+      background-color: #f7f7f7;
       -webkit-text-size-adjust: 100%;
     }
 
-    /* Fixed, full-screen background layer for MOBILE (emulates background-attachment: fixed) */
-    .bg-fixed { display: none; }
-    @media (max-width: 768px) {
-      body {
-        background-image: none;              /* turn off body bg on mobile */
-        background-color: transparent;
-      }
-      .bg-fixed {
-        display: block;
-        position: fixed;
-        inset: 0;
-        z-index: -1;                         /* stay behind everything */
-        background-image: url('mountains.jpeg');
-        background-size: cover;
-        background-position: 75% center;
-        background-repeat: no-repeat;
-        transform: translateZ(0);            /* smooth scrolling on iOS/Android */
-        will-change: transform;
-      }
-    }
-
-    /* Force light theme styling in dark mode (readable black text) */
-    @media (prefers-color-scheme: dark) {
-      html, body {
-        color: #111 !important;
-        background-color: #f7f7f7 !important;
-      }
-      header {
-        background: #fff !important;
-        border-bottom-color: #e5e7eb !important;
-      }
-      .wrap {
-        background: #fff !important;         /* keep the card white */
-        border-color: #e5e7eb !important;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
-      }
-      .subtitle { color: #555 !important; }
-      a { color: #0b57d0 !important; }       /* readable link color on white */
-    }
-
-    /* Top bar */
+    /* Header */
     header {
       position: sticky;
       top: 0;
       background: #fff;
       border-bottom: 1px solid #e5e7eb;
       padding: 10px 0;
-      z-index: 10;                           /* keep above content */
+      z-index: 10;                           /* stay above the banner */
     }
-
     .bar {
       max-width: 980px;
       margin: 0 auto;
@@ -83,37 +42,59 @@
       justify-content: space-between;
       align-items: center;
     }
-
     .brand { font-weight: 700; }
-
     nav a {
       text-decoration: none;
       margin-left: 14px;
       color: inherit;
-      padding: 8px 4px;                      /* easier taps */
+      padding: 8px 4px;
       display: inline-block;
     }
 
-    /* Page container */
+    /* Content card */
     .wrap {
       max-width: 980px;
       margin: 24px auto 64px;
       padding: 24px 20px 64px;
-      background: #fff;                       /* explicit white in light mode */
+      background: #fff;
       border: 1px solid #e5e7eb;
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       position: relative;
     }
 
-    @media (max-width: 640px) {
+    /* “Hero” banner visible only on mobile — sits BELOW header, ABOVE content */
+    .hero-bleed { display: none; }
+    @media (max-width: 768px) {
+      /* Turn off body background on phones so it's not behind the header */
+      body {
+        background-image: none;
+        background-color: #f7f7f7;
+      }
+
+      .hero-bleed {
+        display: block;
+        position: relative;
+        height: 40vh;                         /* adjust 30–45vh to taste */
+        background-image: url('mountains.jpeg');
+        background-size: cover;
+        background-position: 75% center;
+        background-repeat: no-repeat;
+      }
+      .hero-bleed::after {                    /* subtle overlay for contrast */
+        content: "";
+        position: absolute; inset: 0;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.12), rgba(0,0,0,0.28));
+      }
+
+      /* Comfortable padding so the name doesn't hug the edges */
       .wrap {
         margin: 12px auto 40px;
-        padding: 22px 18px 40px;              /* a touch more side padding for comfort */
+        padding: 22px 18px 40px;
       }
     }
 
-    /* Hero */
+    /* Hero (portrait + name) */
     .hero {
       display: grid;
       grid-template-columns: 160px 1fr;
@@ -121,17 +102,15 @@
       align-items: center;
       margin-top: 8px;
     }
-
     .headshot {
       width: 160px;
       height: 160px;
       max-width: 100%;
-      height: auto;                           /* maintain aspect on small screens */
+      height: auto;            /* maintain aspect on small screens */
       object-fit: cover;
       border-radius: 10px;
       display: block;
     }
-
     @media (max-width: 640px) {
       .hero { grid-template-columns: 1fr; }
     }
@@ -143,12 +122,28 @@
     h2 { margin: 0 0 10px; font-size: 20px; }
     ul { padding-left: 18px; }
     footer { margin-top: 36px; font-size: 14px; color: inherit; }
+
+    /* Dark-mode readability (keep light surfaces & dark text) */
+    @media (prefers-color-scheme: dark) {
+      html, body {
+        color: #111 !important;
+        background-color: #f7f7f7 !important;
+      }
+      header {
+        background: #fff !important;
+        border-bottom-color: #e5e7eb !important;
+      }
+      .wrap {
+        background: #fff !important;
+        border-color: #e5e7eb !important;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
+      }
+      .subtitle { color: #555 !important; }
+      a { color: #0b57d0 !important; }
+    }
   </style>
 </head>
 <body>
-  <!-- Fixed background layer for mobile (hidden on desktop) -->
-  <div class="bg-fixed" aria-hidden="true"></div>
-
   <header>
     <div class="bar">
       <div class="brand">Hannah Massenbauer</div>
@@ -159,6 +154,9 @@
       </nav>
     </div>
   </header>
+
+  <!-- Mobile-only banner: BELOW header, ABOVE content -->
+  <div class="hero-bleed" aria-hidden="true"></div>
 
   <main class="wrap">
     <div class="hero">
@@ -177,8 +175,7 @@
 
     <section id="research-teaser">
       <h2>Research</h2>
-      <p>In my research I am interested in labor markets and income &amp; wealth inequalities.</p>
-      <p>I want to understand the drivers of inequality, such as technological change and how people perceive and are impacted by these inequalities.</p>
+      <p>I study inequality in labor markets—its drivers (especially technological change), how people perceive it, and the consequences of those perceptions.</p>
 
       <h3>Working papers:</h3>
       <ul>
@@ -191,8 +188,8 @@
     <section id="contact">
       <h2>Contact</h2>
       <p>Email: <a href="mailto:hannah.massenbauer@gmail.com">hannah.massenbauer@gmail.com</a></p>
-      <p><a href="https://github.com/hmassenb" target="_blank" rel="noopener">GitHub</a> · <a href="https://linkedin.com/in/hannah-massenbauer-8964a2214" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://bsky.app/profile/hannahmassenbauer.bsky.social" target="_blank" rel="noopener">Bluesky</a> </p>
-    </section> 
+      <p><a href="https://github.com/hmassenb" target="_blank" rel="noopener">GitHub</a> · <a href="https://linkedin.com/in/hannah-massenbauer-8964a2214" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://bsky.app/profile/hannahmassenbauer.bsky.social" target="_blank" rel="noopener">Bluesky</a></p>
+    </section>
 
     <footer>
       © <span id="year"></span> Hannah Massenbauer
