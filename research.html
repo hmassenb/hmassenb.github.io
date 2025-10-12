@@ -51,11 +51,11 @@
     @media (prefers-color-scheme: dark) {
       html, body { color: #111 !important; background-color: #f7f7f7 !important; }
       header { background: #fff !important; border-bottom-color: #e5e7eb !important; }
-      /* Solid white card in dark mode on desktop only */
-      @media (min-width: 769px) {
-        .wrap { background: #fff !important; border-color: #e5e7eb !important; box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important; }
-      }
       a { color: #0b57d0 !important; }
+    }
+    /* Solid white card in dark mode on DESKTOP only */
+    @media (prefers-color-scheme: dark) and (min-width: 769px) {
+      .wrap { background: #fff !important; border-color: #e5e7eb !important; box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important; }
     }
 
     /* Header */
@@ -80,6 +80,9 @@
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       position: relative;
+    }
+    @media (max-width: 640px) {
+      .wrap { margin: 12px auto 40px; padding: 22px 18px 40px; }
     }
 
     h1 { margin: 8px 0 6px; font-size: 34px; }
